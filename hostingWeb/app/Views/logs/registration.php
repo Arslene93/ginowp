@@ -119,12 +119,16 @@
                     <div class="col-4">
                         <label> Province : </label>
                         <div id="provincy-container">
-                            <?= form_input([ 'class'=>'form-control','name'=>'province','id'=>'Province','placeholder'=>'Enter email','required'=>'true'])?>
+                            <?= form_input([ 'class'=>'form-control','name'=>'province','id'=>'province','placeholder'=>'Province','required'=>'true'])?>
                         </div>
                     </div>
+                    <!--                    region          -->
                     <div class="col-4">
                         <label> Communi : </label>
-                        <?= form_input([ 'class'=>'form-control','name'=>'region','id'=>'region','placeholder'=>'Region','required'=>'true'])?>
+                        <div id="communi-container">
+                            <?= form_input([ 'class'=>'form-control','name'=>'region','id'=>'region','placeholder'=>'Communi','required'=>'true'])?>
+                        </div>
+
                     </div>
                 </div>
 
@@ -171,8 +175,9 @@
     province = document.querySelector("#province");
     country = document.querySelector("#country");
     street = document.querySelector("#street");
-    region = document.querySelector("#region");
+    region = document.querySelector("#region"); // communi
     postal = document.querySelector("#postal");
+    communi = document.querySelector("#communi");
     piva = document.querySelector("#piva");
     cf = document.querySelector("#cf");
 
@@ -202,31 +207,33 @@
     })
 
     country.addEventListener('change', () => {
-        if (country.value === 'Italy') {
-            cf.required = true;
             $.ajax({
                 method: "POST",
-                url: "some.php",
-                data: { country: "Italy" },
-                type: 
+                url: '<?=base_url('logs/ajaxProvince')?>',
+                data: { country: country.value },
+                dataType: "html",
             })
-                .done(function( msg ) {
-                    document.getElementById("provincy-container").innerHTML =
+                .done(function( data ) {
+                    document.getElementById("provincy-container").innerHTML = data;
+                    province = document.querySelector("#province");
+                    province.addEventListener('change', () => {
+                        $.ajax({
+                            method: "POST",
+                            url: '<?=base_url('logs/ajaxCommuni')?>',
+                            data: { province: province.value },
+                            dataType: "html",
+                        })
+                            .done(function( data ) {
+                                document.getElementById("communi-container").innerHTML = data;
+                            });
+                    })
                 });
-            ;
-        } else {
-            cf.required = false;
-            document.getElementById("provincy-container").innerHTML = '<input type="text" class="form-control" name="province" id="province" placeholder="Province" required/>';
+        if (country.value !== 'Italy') {
+            document.getElementById("communi-container").innerHTML = '<input type="text" class="form-control" name="region" id="region" placeholder="Communi" required/>';
         }
     })
 
-    province.addEventListener('change', () => {
-        if (country.value === 'Italy') {
 
-        } else {
-
-        }
-    })
 
     userCompany.addEventListener('click', helperFunction)
     userIndividual.addEventListener('click', helperFunction)
@@ -255,26 +262,42 @@
 //    validation
     submitButton = document.querySelector('button[type="submit"]');
     submitButton.addEventListener('click', (e) => {
-        // e.preventDefault();
+        e.preventDefault();
         const form = document.querySelector('.needs-validation');
         form.classList.add('was-validated');
         if (form.checkValidity()) {
-            submitButton.submit();
-            // $.ajax({
-            //     url: window.location.origin+ '/logs/register',
-            //     method: "POST",
-            //     data: { name: user_name.value,
-            //             familyname: user_familyname.value,
-            //             email: email.value.trim(),
-            //             password : password.value,
-            //         },
-            //     dataType: "text",
-            // })
-            //     .done(function( data ) {
-            //         console.log(data)
-            //     });
-        }else
-            console.log('yo');
+            //check Admin :
+            console.log('valid');
+            if (admin.checked) {
+                $.ajax({
+                    url: window.location.origin+ '/logs/register',
+                    method: "POST",
+                    data: { admin : '1',
+                            email: email.value.trim(),
+                            password : password.value,
+                        },
+                    dataType: "text",
+                })
+                    .done(function( data ) {
+                        console.log(data)
+                    });
+            } else if (userCompany.checked) {
+                $.ajax({
+                    url: window.location.origin+ '/logs/register',
+                    method: "POST",
+                    data: { admin : '1',
+                        email: email.value.trim(),
+                        password : password.value,
+                    },
+                    dataType: "text",
+                })
+                    .done(function( data ) {
+                        console.log(data)
+                    });
+            }
+        }
+
+
     });
 
 

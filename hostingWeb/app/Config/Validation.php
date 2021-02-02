@@ -44,6 +44,18 @@ class Validation
         'password' => 'required'
     ];
 
+    public $company_registration = [
+        'companyname' =>'required',
+        'piva' => 'required',
+        'name' => 'required',
+        'familyname' =>'required',
+        'cf' => 'required',
+        'email' => 'required|valid_email',
+        'password' =>'required',
+        'country' => 'required',
+        'region' => 'required',
+    ];
+
 	//--------------------------------------------------------------------
 	// Rules
 	//--------------------------------------------------------------------
