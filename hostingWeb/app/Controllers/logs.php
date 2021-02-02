@@ -2,6 +2,7 @@
 
 use App\Models\user_Model;
 use CodeIgniter\Controller;
+use mysql_xdevapi\Result;
 
 class logs extends BaseController
 {
@@ -52,9 +53,39 @@ class logs extends BaseController
                     'email' => $this->request->getPost('email'),
                     'password' => md5($this->request->getPost('password')),
                 ]);
-                echo 'successfully admin added' ;
+                return 'Successfully admin added' ;
             }
-            echo 'error' ;
+            return $validation->getErrors() ;
         }
+    }
+
+    public function ajaxProvince()
+    {
+        $provinceModel = $this->ProvinceModel->asArray()->findAll();
+
+        if ($this->request->getMethod() === 'post' && $_POST['country'] === 'Italy') {
+            $result = '<select class="form-control" name="province" id="province">' ;
+            foreach ($provinceModel as $item) {
+                $result .= '<option value="'.$item['id'].'">'. $item['provincia'].'</option>';
+            }
+            $result .='</select>' ;
+            return $result;
+        }
+        return '<input type="text" class="form-control" name="province" id="province" placeholder="Province" required/>' ;
+    }
+
+    public function ajaxCommuni()
+    {
+        $province = $_POST['province'];
+        $communiModel = $this->ComuniModel->asArray()->where(['id_prov'=>$province])->findAll();
+        if ($this->request->getMethod() === 'post') {
+            $result = '<select class="form-control" name="region" id="region">' ;
+            foreach ($communiModel as $item) {
+                $result .= '<option value="'.$item['comune'].'">'. $item['comune'].'</option>';
+            }
+            $result .='</select>' ;
+            return $result;
+        }
+        return '<input type="text" class="form-control" name="region" id="region" placeholder="Communi" required/>' ;
     }
 }
