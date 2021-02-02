@@ -64,8 +64,8 @@ writable/debugbar/*
 
 php_errors.log
 
-app/config/Database.php
-app/config/App.php
+app/Config/Database.php
+app/Config/App.php
 #-------------------------
 # User Guide Temp Files
 #-------------------------
