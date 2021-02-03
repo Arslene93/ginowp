@@ -1,4 +1,9 @@
 <?php
+
+############### Vocal ##################
+$lang['member'] = 'Membri';
+
+
 ########### buttons ##############
 $lang['btn_login']= "Accedi";
 $lang['btn_signup']= "Registrati";

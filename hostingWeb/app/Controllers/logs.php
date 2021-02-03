@@ -48,15 +48,70 @@ class logs extends BaseController
         if ($this->request->getMethod() === 'post') {
             if ($this->validate($this->validation->getRuleGroup('admin_registration'))) {
                 $this->user_Model->save([
-                    'role'=> 'admin',
+                    'role' => 'admin',
                     'activation' => '1',
                     'email' => $this->request->getPost('email'),
                     'password' => md5($this->request->getPost('password')),
                 ]);
-                return 'Successfully admin added' ;
+                return 'Successfully admin added';
+            } else {
+                $this->validation->reset();
+                if ($this->validate($this->validation->getRuleGroup('company_registration'))) {
+
+                    $this->user_Model->save([
+                        'role' => 'user',
+                        'activation' => '0',
+                        'email' => $this->request->getPost('email'),
+                        'password' => md5($this->request->getPost('password')),
+                    ]);
+                    $user = $this->user_Model->getUser($this->request->getPost('email'));
+                    $this->user_profile_Model->save([
+                        'user_id' => $user['id'],
+                        'type' => 'company',
+                        'company_name' => $this->request->getPost('companyname'),
+                        'piva' => $this->request->getPost('piva'),
+                        'name' => $this->request->getPost('name'),
+                        'family_name' => $this->request->getPost('familyname'),
+                        'cf' => $this->request->getPost('cf'),
+                        'country' => $this->request->getPost('country'),
+                        'state' => $this->request->getPost('province'),
+                        'region' => $this->request->getPost('region'),
+                        'street' => $this->request->getPost('street'),
+                        'civico' => $this->request->getPost('civico'),
+                        'postal' => $this->request->getPost('postal'),
+                    ]);
+                    return 'New company added';
+                } else {
+                    $this->validation->reset();
+                    if ($this->validate($this->validation->getRuleGroup('user_registration'))) {
+
+                        $this->user_Model->save([
+                            'role' => 'user',
+                            'activation' => '0',
+                            'email' => $this->request->getPost('email'),
+                            'password' => md5($this->request->getPost('password')),
+                        ]);
+                        $user = $this->user_Model->getUser($this->request->getPost('email'));
+                        $this->user_profile_Model->save([
+                            'user_id' => $user['id'],
+                            'type' => 'individual',
+                            'name' => $this->request->getPost('name'),
+                            'family_name' => $this->request->getPost('familyname'),
+                            'country' => $this->request->getPost('country'),
+                            'state' => $this->request->getPost('province'),
+                            'region' => $this->request->getPost('region'),
+                            'street' => $this->request->getPost('street'),
+                            'civico' => $this->request->getPost('civico'),
+                            'postal' => $this->request->getPost('postal'),
+                        ]);
+                        return 'New individual added';
+                    }
+
+                }
             }
-            return $validation->getErrors() ;
         }
+        return json_encode($this->validation->getErrors());
+
     }
 
     public function ajaxProvince()

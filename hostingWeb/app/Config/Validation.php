@@ -1,4 +1,5 @@
 <?php namespace Config;
+use CodeIgniter\Language\Language;
 
 class Validation
 {
@@ -40,20 +41,50 @@ class Validation
 
     public $admin_registration = [
         'admin'=> 'required',
-        'email' => 'required|valid_email',
+        'email' => [
+            'label' => 'email',
+            'rules' => 'required|valid_email|is_unique[user.email]',
+        ],
         'password' => 'required'
     ];
 
+
+
     public $company_registration = [
+        'company' => 'required',
         'companyname' =>'required',
         'piva' => 'required',
         'name' => 'required',
         'familyname' =>'required',
         'cf' => 'required',
-        'email' => 'required|valid_email',
+        'email' => [
+            'label' => 'email',
+            'rules' => 'required|valid_email|is_unique[user.email]',
+        ],
         'password' =>'required',
         'country' => 'required',
+        'province' => 'required',
         'region' => 'required',
+        'street' => 'required',
+        'civico' => 'required',
+        'postal' => 'required',
+    ];
+    public $user_registration = [
+        'individual' => 'required',
+        'name' => 'required',
+        'familyname' =>'required',
+        'email' => [
+            'label' => 'email',
+            'rules' => 'required|valid_email|is_unique[user.email]',
+        ],
+        'password' =>'required',
+        'country' => 'required',
+        'province' => 'required',
+        'region' => 'required',
+        'street' => 'required',
+        'cf' => 'required',
+        'civico' => 'required',
+        'postal' => 'required',
     ];
 
 	//--------------------------------------------------------------------
