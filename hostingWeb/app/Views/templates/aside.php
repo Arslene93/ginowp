@@ -32,8 +32,8 @@
                 </li>
                 <!--end::Item-->
                 <!--begin::Item-->
-                <li class="nav-item mb-3" data-toggle="tooltip" data-placement="right" data-container="body" data-boundary="window" title="" data-original-title="Metronic Features">
-                    <a href="#" class="nav-link btn btn-icon btn-clean btn-lg" data-toggle="tab" data-target="#kt_aside_tab_2" role="tab">
+                <li class="nav-item mb-3" data-toggle="tooltip" data-placement="right" data-container="body" data-boundary="window" title="" data-original-title="<?=lang('app.member')?>">
+                    <a href="<?=base_url('admin/members')?>" class="nav-link btn btn-icon btn-clean btn-lg">
 										<span class="svg-icon svg-icon-xl">
 											<!--begin::Svg Icon | path"<?= base_url('template')?>/dist/assets/media/svg/icons/Communication/Group.svg-->
 											<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">

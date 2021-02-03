@@ -24,4 +24,9 @@ class admin extends BaseController
             'province' => $provinceModel,
         ]);
     }
+    public function members()
+    {
+
+        return view('admin/members');
+    }
 }
