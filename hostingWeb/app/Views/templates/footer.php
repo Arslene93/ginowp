@@ -6,6 +6,7 @@
 <script src="<?= base_url('template')?>/dist/assets/plugins/global/plugins.bundle.js?v=7.1.9"></script>
 <script src="<?= base_url('template')?>/dist/assets/plugins/custom/prismjs/prismjs.bundle.js?v=7.1.9"></script>
 <script src="<?= base_url('template')?>/dist/assets/js/scripts.bundle.js?v=7.1.9"></script>
+<script src="<?=base_url('template/dist/assets/js/pages/crud/ktdatatable/base/data-local.js')?>"></script>
 <!--end::Global Theme Bundle-->
 <!--begin::Page Scripts(used by this page)-->
 <!--<script src="--><?//= base_url('template')?><!--/dist/assets/js/pages/builder.js?v=7.1.9"></script>-->
