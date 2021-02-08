@@ -21,7 +21,9 @@
     <link rel="shortcut icon" href="<?= base_url('template')?>/dist/assets/media/logos/favicon.ico">
     <!-- Hotjar Tracking Code for keenthemes.com -->
 <!--    <script>(function(h,o,t,j,a,r){ h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)}; h._hjSettings={hjid:1070954,hjsv:6}; a=o.getElementsByTagName('head')[0]; r=o.createElement('script');r.async=1; r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv; a.appendChild(r); })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');</script><script async="" src="https://static.hotjar.com/c/hotjar-1070954.js?sv=6"></script>-->
-    <style type="text/css">.apexcharts-canvas {
+    <style type="text/css">
+
+        .apexcharts-canvas {
             position: relative;
             user-select: none;
             /* cannot give overflow: hidden as it will crop tooltips which overflow outside chart area */
@@ -683,3 +685,5 @@
             width: 200%;
             height: 200%;
         }</style></head>
+
+        <script src="<?= base_url('template')?>/dist/assets/plugins/global/plugins.bundle.js?v=7.1.9"></script>
