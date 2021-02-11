@@ -31,10 +31,10 @@ class Database extends \CodeIgniter\Database\Config
 	 */
 	public $default = [
 		'DSN'      => '',
-		'hostname' => 'localhost',
-		'username' => '',
-		'password' => '',
-		'database' => '',
+		'hostname' => '167.233.7.195',
+		'username' => 'ginowp_app',
+		'password' => '2#@5Pidv9',
+		'database' => 'ginowp_appDB',
 		'DBDriver' => 'MySQLi',
 		'DBPrefix' => '',
 		'pConnect' => false,
@@ -84,7 +84,7 @@ class Database extends \CodeIgniter\Database\Config
 	public function __construct()
 	{
 		parent::__construct();
-
+ 
 		// Ensure that we always set the database group to 'tests' if
 		// we are currently running an automated logs suite, so that
 		// we don't overwrite live data on accident.

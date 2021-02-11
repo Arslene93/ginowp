@@ -99,9 +99,10 @@
                 </div>
                 <!--begin::Entry-->
                 <div class="d-flex flex-column-fluid">
+
                     <!--begin::Container-->
                     <div class="container">
-                        <?php echo view('admin/record-selection')?>
+                        <?php echo view('admin/record-selection', ["users"=>json_encode($users)])?>
                     </div>
                     <!--end::Container-->
                 </div>
