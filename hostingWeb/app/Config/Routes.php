@@ -33,6 +33,7 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Home::index');
 $routes->get('/admin/members', 'list_of_users::index');
 $routes->get('/user/delete/(:any)', 'list_of_users::delete/$1');
+$routes->get('admin/updateuser/(:any)', 'admin::updateUser/$1');
 
 /**
  * --------------------------------------------------------------------
