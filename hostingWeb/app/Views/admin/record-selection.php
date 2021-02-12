@@ -300,7 +300,7 @@
                                 </ul>\
                             </div>\
                         </div>\
-                        <a href="/user/edit/${row.user_id}" class="btn btn-sm btn-clean btn-icon mr-2" title="Edit details">\
+                        <a href="/admin/updateuser/${row.id_user}" class="btn btn-sm btn-clean btn-icon mr-2" title="Edit details">\
                             <span class="svg-icon svg-icon-md">\
                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">\
                                     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">\
@@ -311,7 +311,7 @@
                                 </svg>\
                             </span>\
                         </a>\
-                        <a href="/user/delete/${row.user_id}" class="btn btn-sm btn-clean btn-icon" title="Delete">\
+                        <a href="/admin/delete/${row.id_user}" class="btn btn-sm btn-clean btn-icon" title="Delete">\
                             <span class="svg-icon svg-icon-md">\
                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">\
                                     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">\

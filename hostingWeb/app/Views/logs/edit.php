@@ -26,7 +26,7 @@
                 <div class="col-3">
                    <span class="switch switch-icon">
                     <label>
-                        <?= form_checkbox(['id'=>'admin','name'=>'admin'], '', $data['role'] == 'admin')?>
+                        <?= form_checkbox(['id'=>'admin','name'=>'admin'])?>
                      <span></span>
                     </label>
                    </span>
@@ -184,7 +184,7 @@
         civico = document.querySelector("#civico");
         piva = document.querySelector("#piva");
         cf = document.querySelector("#cf");
-
+        id = <?php echo(json_encode($data));?>.id_user;
 
         admin.addEventListener('click', () =>{
             let tmp1 = document.querySelectorAll('#block1  input, #block2  input ,#block3  input');
@@ -197,6 +197,10 @@
             })
 
         })
+        
+        
+
+        
 
         userCompany.addEventListener('change', helperFunction)
         userIndividual.addEventListener('change', helperFunction)
@@ -212,6 +216,16 @@
             })
         }
 
+        $(document).ready(function(){
+            let role = <?php echo(json_encode($data));?>.role
+            let type = <?php echo(json_encode($data));?>.type
+            if (role == 'admin') {
+                admin.click();
+            }
+            if (type == "company") {
+                userCompany.click();
+            }
+        })
         country.addEventListener('change', () => {
             $.ajax({
                 method: "POST",
@@ -272,7 +286,7 @@
                 if (admin.checked) {
                     console.log('admin form');
                     $.ajax({
-                        url: window.location.origin + '/logs/register',
+                        url: window.location.origin + '/admin/update/'+id,
                         method: "POST",
                         data: {
                             admin: '1',
@@ -287,7 +301,7 @@
                 } else if (userCompany.checked) {
                     console.log('company form');
                     $.ajax({
-                        url: window.location.origin + '/logs/register',
+                        url: window.location.origin + '/admin/update/'+id,
                         method: "POST",
                         data: {
                             company: '1',
@@ -313,7 +327,7 @@
                 }else if (userIndividual.checked) {
                     console.log('Individual form');
                     $.ajax({
-                        url: window.location.origin + '/logs/register',
+                        url: window.location.origin + '/admin/update/'+id,
                         method: "POST",
                         data: {
                             individual: '1',

@@ -29,7 +29,7 @@ class admin extends BaseController
     {
         $countries = $this->NazioniModel->asArray()->where(['status'=>'enable'])->findColumn('naz_eng');
         $provinceModel = $this->ProvinceModel->asArray()->findAll();
-        $data = $this->user_Model->asArray()->join('user_profile as up','up.user_id = user.id', 'left')->find($id);
+        $data = $this->user_Model->asArray()->join('user_profile as up','up.user_id = user.id', 'left')->select('up.*, user.*, user.id as id_user')->find($id);
     //    var_dump($data["company_name"]);
 
         return view('admin/updateUser',[
@@ -42,5 +42,37 @@ class admin extends BaseController
     public function members()
     {
         return view('admin/members');
+    }
+
+    public function update($id)
+    {
+        $request = $this->request->getVar();
+        $this->user_Model->update($id, ["email" => $request["email"], "role" => isset($request["admin"]) ? "admin" : "user"]);
+        if (!isset($request['admin'])) {
+            $this->user_profile_Model->where('user_id =', $id)->set([
+                'type' => isset($request['company']) ? 'company' : 'individual',
+                'company_name' => isset($request['company']) ? $request['companyname']:  '',
+                'piva' => isset($request['company']) ? $request['piva']:  '',
+                'name' => $request['name'],
+                'family_name' => $request['familyname'],
+                'cf' => isset($request['individual']) ? $request['cf']:  '',
+                'country' => $request['country'],
+                'state' => $request['province'],
+                'region' => $request['region'],
+                'street' => $request['street'],
+                'civico' => $request['civico'],
+                'postal' => $request['postal'],
+            ])->update();
+        }
+        
+        return json_encode($request);
+    }
+
+    public function newDataCenter()
+    {
+        $request = $this->request->getVar();
+        $this->datacenterModel->save([   "name"=>$request['name'],
+                                         "description" => $request["description"],
+                                         "status" => "enabled"]);
     }
 }

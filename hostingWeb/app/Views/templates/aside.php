@@ -1,4 +1,5 @@
 <div class="aside aside-left d-flex aside-fixed" id="kt_aside">
+<?php parse_str($_SERVER['QUERY_STRING'], $_GET);  ?>
     <!--begin::Primary-->
     <div class="aside-primary d-flex flex-column align-items-center flex-row-auto">
         <!--begin::Brand-->
@@ -16,7 +17,7 @@
             <ul class="nav flex-column" role="tablist">
                 <!--begin::Item-->
                 <li class="nav-item mb-3" data-toggle="tooltip" data-placement="right" data-container="body" data-boundary="window" title="" data-original-title="Latest Projects">
-                    <a href="#" class="nav-link btn btn-icon btn-clean btn-lg active" data-toggle="tab" data-target="#kt_aside_tab_1" role="tab">
+                    <a href="#" class="nav-link btn btn-icon btn-clean btn-lg" data-toggle="tab" data-target="#kt_aside_tab_1" role="tab">
 										<span class="svg-icon svg-icon-xl">
 											<!--begin::Svg Icon | path"<?= base_url('template')?>/dist/assets/media/svg/icons/Layout/Layout-4-blocks.svg-->
 											<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -33,7 +34,7 @@
                 <!--end::Item-->
                 <!--begin::Item-->
                 <li class="nav-item mb-3" data-toggle="tooltip" data-placement="right" data-container="body" data-boundary="window" title="" data-original-title="<?=lang('app.member')?>">
-                    <a href="<?=base_url('admin/members')?>" class="nav-link btn btn-icon btn-clean btn-lg">
+                    <a href="<?=base_url('admin/members?role=user')?>" class="nav-link btn btn-icon btn-clean btn-lg <?php if (uri_string() == "admin/members" &&  $role &&($role ?? null) == "user") {echo "active";} ?>">
 										<span class="svg-icon svg-icon-xl">
 											<!--begin::Svg Icon | path"<?= base_url('template')?>/dist/assets/media/svg/icons/Communication/Group.svg-->
 											<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -45,6 +46,20 @@
 											</svg>
                                             <!--end::Svg Icon-->
 										</span>
+                    </a>
+                </li>
+
+				<li class="nav-item mb-3" data-toggle="tooltip" data-placement="right" data-container="body" data-boundary="window" title="" data-original-title="<?=lang('app.admin')?>">
+                    <a href="<?=base_url('admin/members?role=admin')?>" class="nav-link btn btn-icon btn-clean btn-lg <?php if (uri_string() == "admin/members" && ($role ?? null) == "admin") {echo "active";} ?>">
+						<span class="svg-icon svg-icon-xl"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-02-01-052524/theme/html/demo3/dist/../src/media/svg/icons/Code/Spy.svg-->
+							<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+								<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+									<rect x="0" y="0" width="24" height="24"/>
+									<path d="M12,3 C16.418278,3 20,6.581722 20,11 L20,21 C20,21.5522847 19.5522847,22 19,22 L5,22 C4.44771525,22 4,21.5522847 4,21 L4,11 C4,6.581722 7.581722,3 12,3 Z M9,10 C7.34314575,10 6,11.3431458 6,13 C6,14.6568542 7.34314575,16 9,16 L15,16 C16.6568542,16 18,14.6568542 18,13 C18,11.3431458 16.6568542,10 15,10 L9,10 Z" fill="#000000"/>
+									<path d="M15,14 C14.4477153,14 14,13.5522847 14,13 C14,12.4477153 14.4477153,12 15,12 C15.5522847,12 16,12.4477153 16,13 C16,13.5522847 15.5522847,14 15,14 Z M9,14 C8.44771525,14 8,13.5522847 8,13 C8,12.4477153 8.44771525,12 9,12 C9.55228475,12 10,12.4477153 10,13 C10,13.5522847 9.55228475,14 9,14 Z" fill="#000000" opacity="0.3"/>
+								</g>
+							</svg><!--end::Svg Icon-->
+						</span>
                     </a>
                 </li>
                 <!--end::Item-->

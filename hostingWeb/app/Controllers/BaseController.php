@@ -85,6 +85,7 @@ class BaseController extends Controller
         $this->product_Model = new product_Model();
         $this->user_Model =  new user_Model();
         $this->user_profile_Model =  new user_profile_Model();
+        $this->datacenterModel =  new datacenterModel();
 
         //--------------------------------------------------------------------
 		// Preload any models, libraries, etc, here.

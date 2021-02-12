@@ -2,6 +2,7 @@
 
 ############### Vocal ##################
 $lang['member'] = 'Membri';
+$lang['admin'] = 'Admin';
 
 
 ########### buttons ##############
