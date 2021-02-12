@@ -28,7 +28,7 @@
     <!--begin::Page-->
     <div class="d-flex flex-row flex-column-fluid page">
         <!--begin::Aside-->
-        <?php echo view('templates/aside.php', ['role' => $role])?>
+        <?php echo view('templates/aside.php')?>
         <!--end::Aside-->
         <!--begin::Wrapper-->
         <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
@@ -99,10 +99,9 @@
                 </div>
                 <!--begin::Entry-->
                 <div class="d-flex flex-column-fluid">
-
                     <!--begin::Container-->
                     <div class="container">
-                        <?php echo view('admin/record-selection', ["users"=>json_encode($users)])?>
+                        <?php echo view('logs/newDataCenter.php')?>
                     </div>
                     <!--end::Container-->
                 </div>

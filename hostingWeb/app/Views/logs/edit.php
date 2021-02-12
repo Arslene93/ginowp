@@ -39,12 +39,12 @@
             <div id='block1' class="form-group">
                 <div class="radio-inline" >
                     <label class="radio">
-                        <?= form_radio(['id'=>'company','name'=>'usertype'])?>
+                        <?= form_radio(['id'=>'company','name'=>'usertype'],'',$data['type'] == "company")?>
                         <span></span>
                         Company
                     </label>
                     <label class="radio">
-                        <?= form_radio(['id'=>'individual','name'=>'usertype'],'',true)?>
+                        <?= form_radio(['id'=>'individual','name'=>'usertype'],'',$data['type'] == "individual" || $data['type'] == null)?>
                         <span></span>
                         Individual
                     </label>
@@ -53,30 +53,28 @@
 <!-- ========================================================================= block 2  -->
 
             <?= form_open('','class="form needs-validation"')?>
-
             <div id="block2">
                 <div class="separator separator-dashed my-8"></div>
-
                 <div id="block4" class="row form-group" hidden>
                         <div class="col-8">
-                            <?= form_input(['class'=>'form-control','name'=>'companyname','id'=>'companyname','disabled'=>'true','placeholder'=>'Company name','required'=>'true'])?>
+                            <?= form_input(['class'=>'form-control','value' => $data['company_name'],'name'=>'companyname','id'=>'companyname','disabled'=>'true','placeholder'=>'Company name','required'=>'true'])?>
                         </div>
                         <div class="col-4">
-                            <?= form_input(['class'=>'form-control','name'=>'piva','id'=>'piva','placeholder'=>'PIVA','required'=>'true','disabled'=>'true'])?>
+                            <?= form_input(['class'=>'form-control','value' => $data['piva'],'name'=>'piva','id'=>'piva','placeholder'=>'PIVA','required'=>'true','disabled'=>'true'])?>
                         </div>
                 </div>
                 <div class="row form-group">
                     <div class="col-4">
-                        <?= form_input([ 'class'=>'form-control','name'=>'name','id'=>'name','placeholder'=>'Name','required'=>'true'])?>
+                        <?= form_input([ 'class'=>'form-control','value' => $data['name'],'name'=>'name','id'=>'name','placeholder'=>'Name','required'=>'true'])?>
                     </div>
 
                     <!--    Family name , name : familyname -->
                     <div class="col-4">
-                        <?= form_input([ 'class'=>'form-control','name'=>'familyname','id'=>'familyname','placeholder'=>'Family name','required'=>'true'])?>
+                        <?= form_input([ 'class'=>'form-control','value' => $data['family_name'],'name'=>'familyname','id'=>'familyname','placeholder'=>'Family name','required'=>'true'])?>
                     </div>
 
                     <div class="col-4">
-                        <?= form_input([ 'class'=>'form-control','name'=>'cf','id'=>'cf','placeholder'=>'CF'])?>
+                        <?= form_input([ 'class'=>'form-control','value' => $data['cf'],'name'=>'cf','id'=>'cf','placeholder'=>'CF'])?>
                     </div>
                 </div>
             </div>
@@ -88,7 +86,7 @@
             <!--    email , name : email -->
 
             <div class="form-group">
-                <?= form_input([ 'type'=>'email', 'class'=>'form-control','name'=>'email','id'=>'email','placeholder'=>'Enter email','required'=>'true'])?>
+                <?= form_input([ 'type'=>'email','value' => $data['email'], 'class'=>'form-control','name'=>'email','id'=>'email','placeholder'=>'Enter email','required'=>'true'])?>
             </div>
 
             <!--    password , name : password -->
@@ -116,7 +114,7 @@
                             <?php
                             $countries = esc($countries);
                             foreach($countries as $item) :?>
-                                <option value="<?=$item?>"> <?=$item?></option>
+                                <option value="<?=$item?>" <?php if($item == $data['country']){ echo('selected');} ?>> <?=$item?></option>
                             <?php endforeach; ?>
                         </select>
 
@@ -124,14 +122,14 @@
                     <div class="col-4">
                         <label> Province : </label>
                         <div id="provincy-container">
-                            <?= form_input([ 'class'=>'form-control','name'=>'province','id'=>'province','placeholder'=>'Province','required'=>'true'])?>
+                            <?= form_input([ 'class'=>'form-control','value' => $data['state'],'name'=>'province','id'=>'province','placeholder'=>'Province','required'=>'true'])?>
                         </div>
                     </div>
                     <!--                    region          -->
                     <div class="col-4">
                         <label> Communi : </label>
                         <div id="communi-container">
-                            <?= form_input([ 'class'=>'form-control','name'=>'region','id'=>'region','placeholder'=>'Communi','required'=>'true'])?>
+                            <?= form_input([ 'class'=>'form-control','value' => $data['region'],'name'=>'region','id'=>'region','placeholder'=>'Communi','required'=>'true'])?>
                         </div>
 
                     </div>
@@ -140,17 +138,17 @@
                 <div class="form-group row">
                     <div class="col-4">
                         <label> Street : </label>
-                        <?= form_input([ 'class'=>'form-control','name'=>'street','id'=>'street','placeholder'=>'Street','required'=>'true'])?>
+                        <?= form_input([ 'class'=>'form-control','value' => $data['street'],'name'=>'street','id'=>'street','placeholder'=>'Street','required'=>'true'])?>
                     </div>
 
                     <div class="col-4">
                         <label> Civico : </label>
-                        <?= form_input([ 'type'=>'number', 'class'=>'form-control','name'=>'civico','id'=>'civico','placeholder'=>'Civico','required'=>'true'])?>
+                        <?= form_input([ 'type'=>'number','value' => $data['civico'], 'class'=>'form-control','name'=>'civico','id'=>'civico','placeholder'=>'Civico','required'=>'true'])?>
                     </div>
 
                     <div class="col-4">
                         <label> Postal : </label>
-                        <?= form_input([ 'type'=>'number', 'class'=>'form-control','name'=>'Postal','id'=>'Postal','placeholder'=>'Postal','required'=>'true'])?>
+                        <?= form_input([ 'type'=>'number','value' => $data['postal'], 'class'=>'form-control','name'=>'Postal','id'=>'Postal','placeholder'=>'Postal','required'=>'true'])?>
                     </div>
                 </div>
 
@@ -186,7 +184,7 @@
         civico = document.querySelector("#civico");
         piva = document.querySelector("#piva");
         cf = document.querySelector("#cf");
-
+        id = <?php echo(json_encode($data));?>.id_user;
 
         admin.addEventListener('click', () =>{
             let tmp1 = document.querySelectorAll('#block1  input, #block2  input ,#block3  input');
@@ -199,6 +197,10 @@
             })
 
         })
+        
+        
+
+        
 
         userCompany.addEventListener('change', helperFunction)
         userIndividual.addEventListener('change', helperFunction)
@@ -214,6 +216,16 @@
             })
         }
 
+        $(document).ready(function(){
+            let role = <?php echo(json_encode($data));?>.role
+            let type = <?php echo(json_encode($data));?>.type
+            if (role == 'admin') {
+                admin.click();
+            }
+            if (type == "company") {
+                userCompany.click();
+            }
+        })
         country.addEventListener('change', () => {
             $.ajax({
                 method: "POST",
@@ -274,7 +286,7 @@
                 if (admin.checked) {
                     console.log('admin form');
                     $.ajax({
-                        url: window.location.origin + '/logs/register',
+                        url: window.location.origin + '/admin/update/'+id,
                         method: "POST",
                         data: {
                             admin: '1',
@@ -289,7 +301,7 @@
                 } else if (userCompany.checked) {
                     console.log('company form');
                     $.ajax({
-                        url: window.location.origin + '/logs/register',
+                        url: window.location.origin + '/admin/update/'+id,
                         method: "POST",
                         data: {
                             company: '1',
@@ -315,7 +327,7 @@
                 }else if (userIndividual.checked) {
                     console.log('Individual form');
                     $.ajax({
-                        url: window.location.origin + '/logs/register',
+                        url: window.location.origin + '/admin/update/'+id,
                         method: "POST",
                         data: {
                             individual: '1',

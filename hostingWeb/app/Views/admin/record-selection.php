@@ -1,4 +1,5 @@
 <div class="container">
+
     <!--begin::Notice-->
     <div class="alert alert-custom alert-white alert-shadow gutter-b" role="alert">
         <div class="alert-icon">
@@ -175,17 +176,18 @@
 
 // Class definition
 
-        var KTDatatableJsonRemoteDemo = function() {
+        var KTDatatableJsonRemoteDemo = function(data) {
             // Private functions
 
             // basic demo
             var HOST_URL = "https://preview.keenthemes.com/metronic/theme/html/tools/preview";
-            var demo = function() {
+            var demo = function(data) {
+                // console.log(JSON.parse(data));
                 var datatable = $('#kt_datatable').KTDatatable({
                     // datasource definition
                     data: {
-                        type: 'remote',
-                        source: HOST_URL + '/api/?file=datatables/datasource/default.json',
+                        type: 'local',
+                        source: data,
                         pageSize: 10,
                     },
 
@@ -210,92 +212,36 @@
                         field: 'RecordID',
                         title: '#',
                         sortable: false,
-                        width: 20,
+                        width: 30,
                         type: 'number',
                         selector: {
                             class: ''
                         },
                         textAlign: 'center',
                     }, {
-                        field: 'OrderID',
-                        title: 'User ID',
+                        field: 'email',
+                        title: 'Email',
                     }, {
-                        field: '1',
+                        field: 'type',
+                        title: 'Type',
+                    },{
+                        field: 'name',
                         title: 'Name',
                     },{
-                        field: '2',
-                        title: 'Last Name',
-                    },{
-                        field: '3',
+                        field: 'family_nme',
+                        title: 'Family Name',
+                    },
+                    {
+                        field: 'company_name',
                         title: 'Company Name',
-                    },{
-                        field: 'Country',
-                        title: 'Country',
-                    }, {
-                        field: 'ShipDate',
-                        title: 'Date of Birth',
-                        type: 'date',
-                        format: 'MM/DD/YYYY',
-                    }, {
-                        field: 'Status',
-                        title: 'Status',
-                        // callback function support for column rendering
-                        template: function(row) {
-                            var status = {
-                                1: {
-                                    'title': 'Pending',
-                                    'class': ' label-light-success'
-                                },
-                                2: {
-                                    'title': 'Delivered',
-                                    'class': ' label-light-primary'
-                                },
-                                3: {
-                                    'title': 'Canceled',
-                                    'class': ' label-light-primary'
-                                },
-                                4: {
-                                    'title': 'Success',
-                                    'class': ' label-light-success'
-                                },
-                                5: {
-                                    'title': 'Info',
-                                    'class': ' label-light-info'
-                                },
-                                6: {
-                                    'title': 'Danger',
-                                    'class': ' label-light-danger'
-                                },
-                                7: {
-                                    'title': 'Warning',
-                                    'class': ' label-light-warning'
-                                },
-                            };
-                            return '<span class="label font-weight-bold label-lg' + status[row.Status].class + ' label-inline">' + status[row.Status].title + '</span>';
-                        },
-                    }, {
-                        field: 'Type',
-                        title: 'Type',
-                        autoHide: false,
-                        // callback function support for column rendering
-                        template: function(row) {
-                            var status = {
-                                1: {
-                                    'title': 'Online',
-                                    'state': 'danger'
-                                },
-                                2: {
-                                    'title': 'Retail',
-                                    'state': 'primary'
-                                },
-                                3: {
-                                    'title': 'Direct',
-                                    'state': 'success'
-                                },
-                            };
-                            return '<span class="label label-' + status[row.Type].state + ' label-dot mr-2"></span><span class="font-weight-bold text-' + status[row.Type].state + '">' +
-                                status[row.Type].title + '</span>';
-                        },
+                    },
+                    {
+                        field: 'piva',
+                        title: 'PIVA',
+                    },
+                    {
+                        field: 'cf',
+                        title: 'Code Fiscal',
                     }, {
                         field: 'Actions',
                         title: 'Actions',
@@ -303,8 +249,8 @@
                         width: 125,
                         autoHide: false,
                         overflow: 'visible',
-                        template: function() {
-                            return '\
+                        template: function(row) {
+                            return `\
                         <div class="dropdown dropdown-inline">\
                             <a href="javascript:;" class="btn btn-sm btn-clean btn-icon mr-2" data-toggle="dropdown">\
                                 <span class="svg-icon svg-icon-md">\
@@ -354,7 +300,7 @@
                                 </ul>\
                             </div>\
                         </div>\
-                        <a href="javascript:;" class="btn btn-sm btn-clean btn-icon mr-2" title="Edit details">\
+                        <a href="/admin/updateuser/${row.id_user}" class="btn btn-sm btn-clean btn-icon mr-2" title="Edit details">\
                             <span class="svg-icon svg-icon-md">\
                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">\
                                     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">\
@@ -365,7 +311,7 @@
                                 </svg>\
                             </span>\
                         </a>\
-                        <a href="javascript:;" class="btn btn-sm btn-clean btn-icon" title="Delete">\
+                        <a href="/admin/delete/${row.id_user}" class="btn btn-sm btn-clean btn-icon" title="Delete">\
                             <span class="svg-icon svg-icon-md">\
                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">\
                                     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">\
@@ -376,7 +322,7 @@
                                 </svg>\
                             </span>\
                         </a>\
-                    ';
+                    `;
                         },
                     }],
 
@@ -395,14 +341,14 @@
 
             return {
                 // public functions
-                init: function() {
-                    demo();
+                init: function(data) {
+                    demo(data);
                 }
             };
         }();
 
         jQuery(document).ready(function() {
-            KTDatatableJsonRemoteDemo.init();
+            KTDatatableJsonRemoteDemo.init(<?php echo($users) ?>);
         });
 
         /******/ })()

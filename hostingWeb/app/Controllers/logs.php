@@ -12,7 +12,7 @@ class logs extends BaseController
         $user = $this->session->get('user');
         if (!empty($user)) {
             if ($user['role'] === 'admin') {
-                return redirect()->to('/admin/dashboard');
+                return redirect()->to('/admin/members?role=user');
             }else
                 return redirect()->to('/mypanel/dashboard');
         }
