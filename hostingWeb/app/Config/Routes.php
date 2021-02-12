@@ -35,7 +35,9 @@ $routes->get('/admin/members', 'list_of_users::index');
 $routes->get('/admin/delete/(:any)', 'list_of_users::delete/$1');
 $routes->get('admin/updateuser/(:any)', 'admin::updateUser/$1');
 $routes->post('admin/update/(:any)', 'admin::update/$1');
-$routes->post('admin/newDataCenter', 'admin::newDataCenter');
+$routes->post('admin/newCenter', 'admin::newDataCenter');
+$routes->get('admin/newDataCenter', 'admin::newDataCenter');
+// $routes->get('admin/newDataCenter', 'admin::newDataCenter');
 
 /**
  * --------------------------------------------------------------------

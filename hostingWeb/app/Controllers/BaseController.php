@@ -30,6 +30,7 @@ use App\Models\orders_Model;
 use App\Models\product_Model;
 use App\Models\user_Model;
 use App\Models\user_profile_Model;
+use App\Models\datacenterModel;
 use CodeIgniter\Session\Session;
 
 class BaseController extends Controller

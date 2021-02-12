@@ -68,11 +68,16 @@ class admin extends BaseController
         return json_encode($request);
     }
 
-    public function newDataCenter()
+    public function newCenter()
     {
         $request = $this->request->getVar();
         $this->datacenterModel->save([   "name"=>$request['name'],
                                          "description" => $request["description"],
                                          "status" => "enabled"]);
+    }
+
+    public function newDataCenter()
+    {
+        return view('admin/newDataCenter');
     }
 }
