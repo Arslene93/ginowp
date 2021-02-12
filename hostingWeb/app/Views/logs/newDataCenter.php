@@ -27,9 +27,9 @@
             <div id="block2">
                 <div class="separator separator-dashed my-8"></div>
 
-                <div id="block4" class="row form-group">
+                <div class="row form-group">
                         <div class="col-8">
-                            <?= form_input(['class'=>'form-control','name'=>'name','id'=>'name','placeholder'=>'data center name','required'=>'true'])?>
+                            <?= form_input(['class'=>'form-control','name'=>'dataname','id'=>'dataname','placeholder'=>'data center name', 'required' => true])?>
                         </div>
                 </div>
                 <div class="row form-group">
@@ -53,9 +53,9 @@
 </div>
 
     <script>
-        name = document.querySelector('#name');
+
         description = document.querySelector('#description');
-        
+        name = document.querySelector('#dataname');
 
         function helperFunction(e){
             let tmp1 = document.querySelectorAll('#block4  input');
@@ -72,18 +72,19 @@
         submitButton = document.querySelector('button[type="submit"]');
         submitButton.addEventListener('click', (e) => {
             e.preventDefault();
+            console.log(name);
             const form = document.querySelector('.needs-validation');
             form.classList.add('was-validated');
             if (form.checkValidity()) {
                 console.log('Form valid');
                 //check Admin :
-                if (admin.checked) {
                     console.log('admin form');
                     $.ajax({
                         url: window.location.origin + '/admin/newDataCenter',
                         method: "POST",
+                        
                         data: {
-                            name: name.value.trim(),
+                            name: name.trim(),
                             description: description.value.trim(),
                         },
                         dataType: "json",
@@ -91,7 +92,6 @@
                         .done(function (data) {
                             document.getElementById('error-container').innerText = data.email ?? data;
                         });
-                }
             } else {
                 console.log('form Invalid');
             }
