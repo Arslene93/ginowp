@@ -21,7 +21,9 @@ class list_of_users extends BaseController
     	// dd($id);
     	$user = new user_model();
     	$user->where('id', $id)->delete();
-    	return redirect()->back();
+        return redirect()->back();
+        
     }
+
 
 }
