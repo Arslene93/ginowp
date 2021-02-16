@@ -101,7 +101,7 @@
                 <div class="d-flex flex-column-fluid">
                     <!--begin::Container-->
                     <div class="container">
-                        @include('logs/newDataCenter')
+                        @include('logs/newProduct')
                     </div>
                     <!--end::Container-->
                 </div>

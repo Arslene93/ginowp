@@ -22,19 +22,19 @@
 
 <!-- ========================================================================= block 2  -->
 
-            <?= form_open('','class="form needs-validation"')?>
-
+            <form class="form needs-validation">
+                @csrf
             <div id="block2">
                 <div class="separator separator-dashed my-8"></div>
 
                 <div class="row form-group">
                         <div class="col-8">
-                            <?= form_input(['class'=>'form-control','name'=>'dataname','id'=>'dataname','placeholder'=>'data center name', 'required' => true])?>
+                            <input type="text" class="form-control" name="dataname" id="dataname" placeholder="data center name" required>
                         </div>
                 </div>
                 <div class="row form-group">
                     <div class="col-4">
-                        <?= form_textarea([ 'class'=>'form-control','name'=>'description','id'=>'description','placeholder'=>'Description'])?>
+                        <textarea name="description" id="description" class="form-control" placeholder="Description"></textarea>
                     </div>
                 </div>
             </div>
@@ -45,10 +45,10 @@
             <!-- ========================================================================= -->
         </div>
     <div class="card-footer">
-        <button type="submit" class="btn btn-primary mr-2"><?= lang('app.btn_login', array(),'it')?></button>
+        <button type="submit" class="btn btn-primary mr-2">{{__('app.btn_login')}}</button>
         <button type="reset" class="btn btn-secondary">Cancel</button>
     </div>
-    <?= form_close()?>
+</form>
             <!--end::Form-->
 </div>
 
