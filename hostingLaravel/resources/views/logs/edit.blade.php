@@ -26,8 +26,8 @@
                 <div class="col-3">
                    <span class="switch switch-icon">
                     <label>
-                        <?= form_checkbox(['id'=>'admin','name'=>'admin'])?>
-                     <span></span>
+                        <input type="checkbox" name="admin"  id="admin">
+                        <span></span>
                     </label>
                    </span>
                 </div>
@@ -39,12 +39,12 @@
             <div id='block1' class="form-group">
                 <div class="radio-inline" >
                     <label class="radio">
-                        <?= form_radio(['id'=>'company','name'=>'usertype'])?>
+                        <input type="radio" name="usertype" value="{{$data['type'] == "company"}}" id="company">
                         <span></span>
                         Company
                     </label>
                     <label class="radio">
-                        <?= form_radio(['id'=>'individual','name'=>'usertype'],'',true)?>
+                    <input type="radio" name="usertype" value="{{$data['type'] == "individual" || $data['type'] == null}}" checked="checked" id="individual">
                         <span></span>
                         Individual
                     </label>
@@ -52,31 +52,29 @@
             </div>
 <!-- ========================================================================= block 2  -->
 
-            <?= form_open('','class="form needs-validation"')?>
-
-            <div id="block2">
+            <form class="form needs-validation">
+                <div id="block2">
                 <div class="separator separator-dashed my-8"></div>
-
                 <div id="block4" class="row form-group" hidden>
                         <div class="col-8">
-                            <?= form_input(['class'=>'form-control','name'=>'companyname','id'=>'companyname','disabled'=>'true','placeholder'=>'Company name','required'=>'true'])?>
+                        <input type="text" class="form-control" name="companyname" id="companyname" disabled value="{{$data['company_name']}}" placeholder="Company name" required>
                         </div>
                         <div class="col-4">
-                            <?= form_input(['class'=>'form-control','name'=>'piva','id'=>'piva','placeholder'=>'PIVA','required'=>'true','disabled'=>'true'])?>
+                            <input type="text" class="form-control" name="piva" value="$data['piva']" id="piva" placeholder="PIVA" required disabled>
                         </div>
                 </div>
                 <div class="row form-group">
                     <div class="col-4">
-                        <?= form_input([ 'class'=>'form-control','name'=>'name','id'=>'name','placeholder'=>'Name','required'=>'true'])?>
+                    <input type="text" class="form-control" name="name" value="{{$data['name']}}" id="name" placeholder="Name" required>
                     </div>
 
                     <!--    Family name , name : familyname -->
                     <div class="col-4">
-                        <?= form_input([ 'class'=>'form-control','name'=>'familyname','id'=>'familyname','placeholder'=>'Family name','required'=>'true'])?>
+                    <input type="text" class="form-control" name="familyname" value="{{$data['family_name']}}" id="familyname" placeholder="Family name" required>
                     </div>
 
                     <div class="col-4">
-                        <?= form_input([ 'class'=>'form-control','name'=>'cf','id'=>'cf','placeholder'=>'CF'])?>
+                    <input type="text" class="form-control" name="cf" value="{{$data['cf']}}" id="cf" placeholder="CF" required>
                     </div>
                 </div>
             </div>
@@ -88,18 +86,18 @@
             <!--    email , name : email -->
 
             <div class="form-group">
-                <?= form_input([ 'type'=>'email', 'class'=>'form-control','name'=>'email','id'=>'email','placeholder'=>'Enter email','required'=>'true'])?>
+            <input type="email" class="form-control" name="email" value="{{$data['email']}}" id="email" placeholder="Enter email" required>
             </div>
 
             <!--    password , name : password -->
             <div class="row form-group">
                 <div class="col-6">
-                    <?=form_password(['class'=>'form-control','name'=>'password','id'=>'password','placeholder'=>'Password','required'=>'true'])?>
+                    <input type="password" name="password" value="" class="form-control" id="password" placeholder="Password" required="true">
                 </div>
 
                 <!--    confirm password , name : passwordconfirm -->
                 <div class="col-6">
-                    <?=form_password(['class'=>'form-control','name'=>'confirmpassword','id'=>'confirmpassword','placeholder'=>'Confirm Password','required'=>'true'])?>
+                    <input type="password" name="confirmpassword" value="" class="form-control" id="confirmpassword" placeholder="Confirm Password" required="true">
                 </div>
             </div>
 
@@ -114,9 +112,8 @@
                         <label> Country : </label>
                         <select class="form-control" name="country" id="country">
                             <?php
-                            $countries = esc($countries);
                             foreach($countries as $item) :?>
-                                <option value="<?=$item?>"> <?=$item?></option>
+                                <option value="<?=$item?>" <?php if($item == $data['country']){ echo('selected');} ?>> <?=$item?></option>
                             <?php endforeach; ?>
                         </select>
 
@@ -124,14 +121,14 @@
                     <div class="col-4">
                         <label> Province : </label>
                         <div id="provincy-container">
-                            <?= form_input([ 'class'=>'form-control','name'=>'province','id'=>'province','placeholder'=>'Province','required'=>'true'])?>
+                            <input type="text" name="province" value="{{$data['state']}}" class="form-control" id="province" placeholder="Province" required="true">
                         </div>
                     </div>
                     <!--                    region          -->
                     <div class="col-4">
                         <label> Communi : </label>
                         <div id="communi-container">
-                            <?= form_input([ 'class'=>'form-control','name'=>'region','id'=>'region','placeholder'=>'Communi','required'=>'true'])?>
+                            <input type="text" name="region" value="'{{$data['region']}}" class="form-control" id="region" placeholder="Communi" required="true">
                         </div>
 
                     </div>
@@ -140,17 +137,17 @@
                 <div class="form-group row">
                     <div class="col-4">
                         <label> Street : </label>
-                        <?= form_input([ 'class'=>'form-control','name'=>'street','id'=>'street','placeholder'=>'Street','required'=>'true'])?>
+                    <input type="text" name="street" value="{{$data['street']}}" class="form-control" id="street" placeholder="Street" required="true">
                     </div>
 
                     <div class="col-4">
                         <label> Civico : </label>
-                        <?= form_input([ 'type'=>'number', 'class'=>'form-control','name'=>'civico','id'=>'civico','placeholder'=>'Civico','required'=>'true'])?>
+                        <input type="number" name="civico" value="{{$data['civico']}}" class="form-control" id="civico" placeholder="Civico" required="true">
                     </div>
 
                     <div class="col-4">
                         <label> Postal : </label>
-                        <?= form_input([ 'type'=>'number', 'class'=>'form-control','name'=>'Postal','id'=>'Postal','placeholder'=>'Postal','required'=>'true'])?>
+                        <input type="number" name="Postal" value="{{$data['postal']}}" class="form-control" id="Postal" placeholder="Postal" required="true">
                     </div>
                 </div>
 
@@ -160,10 +157,10 @@
             <!-- ========================================================================= -->
         </div>
     <div class="card-footer">
-        <button type="submit" class="btn btn-primary mr-2"><?= lang('app.btn_login', array(),'it')?></button>
+        <button type="submit" class="btn btn-primary mr-2"><?= __('app.btn_login', array(),'it')?></button>
         <button type="reset" class="btn btn-secondary">Cancel</button>
     </div>
-    <?= form_close()?>
+</form>
             <!--end::Form-->
 </div>
 
@@ -186,7 +183,7 @@
         civico = document.querySelector("#civico");
         piva = document.querySelector("#piva");
         cf = document.querySelector("#cf");
-
+        id = <?php echo(json_encode($data));?>.id_user;
 
         admin.addEventListener('click', () =>{
             let tmp1 = document.querySelectorAll('#block1  input, #block2  input ,#block3  input');
@@ -199,6 +196,10 @@
             })
 
         })
+        
+        
+
+        
 
         userCompany.addEventListener('change', helperFunction)
         userIndividual.addEventListener('change', helperFunction)
@@ -214,10 +215,20 @@
             })
         }
 
+        $(document).ready(function(){
+            let role = {{json_encode($data)}}.role
+            let type = {{json_encode($data)}}.type
+            if (role == 'admin') {
+                admin.click();
+            }
+            if (type == "company") {
+                userCompany.click();
+            }
+        })
         country.addEventListener('change', () => {
             $.ajax({
                 method: "POST",
-                url: '<?=base_url('logs/ajaxProvince')?>',
+                url: 'logs/ajaxProvince',
                 data: { country: country.value },
                 dataType: "html",
             })
@@ -227,7 +238,7 @@
                         province.addEventListener('change', () => {
                             $.ajax({
                                 method: "POST",
-                                url: '<?=base_url('logs/ajaxCommuni')?>',
+                                url: '/logs/ajaxCommuni',
                                 data: { province: province.value },
                                 dataType: "html",
                             })
@@ -274,7 +285,7 @@
                 if (admin.checked) {
                     console.log('admin form');
                     $.ajax({
-                        url: window.location.origin + '/logs/register',
+                        url: window.location.origin + '/admin/update/'+id,
                         method: "POST",
                         data: {
                             admin: '1',
@@ -289,7 +300,7 @@
                 } else if (userCompany.checked) {
                     console.log('company form');
                     $.ajax({
-                        url: window.location.origin + '/logs/register',
+                        url: window.location.origin + '/admin/update/'+id,
                         method: "POST",
                         data: {
                             company: '1',
@@ -315,7 +326,7 @@
                 }else if (userIndividual.checked) {
                     console.log('Individual form');
                     $.ajax({
-                        url: window.location.origin + '/logs/register',
+                        url: window.location.origin + '/admin/update/'+id,
                         method: "POST",
                         data: {
                             individual: '1',

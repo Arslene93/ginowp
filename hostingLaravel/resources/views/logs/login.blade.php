@@ -1,7 +1,7 @@
 <?php
 //
 //helper('form');
-//echo form_open(base_url('tester/login'));
+//echo form_open(url('tester/login'));
 //?>
 <!--email :-->
 <?php
@@ -63,16 +63,16 @@ License: You must have a valid license purchased only from themeforest(the above
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
     <!--end::Fonts-->
     <!--begin::Page Custom Styles(used by this page)-->
-    <link href='<?=base_url('template/dist/assets/css/pages/login/login-2.css')?>' rel="stylesheet" type="text/css" />
+    <link href='<?=url('template/dist/assets/css/pages/login/login-2.css')?>' rel="stylesheet" type="text/css" />
     <!--end::Page Custom Styles-->
     <!--begin::Global Theme Styles(used by all pages)-->
-    <link href="<?=base_url('template/dist/assets/plugins/global/plugins.bundle.css')?>" rel="stylesheet" type="text/css" />
-    <link href="<?=base_url('template/dist/assets/plugins/custom/prismjs/prismjs.bundle.css')?>" rel="stylesheet" type="text/css" />
-    <link href="<?=base_url('template/dist/assets/css/style.bundle.css')?>" rel="stylesheet" type="text/css" />
+    <link href="<?=url('template/dist/assets/plugins/global/plugins.bundle.css')?>" rel="stylesheet" type="text/css" />
+    <link href="<?=url('template/dist/assets/plugins/custom/prismjs/prismjs.bundle.css')?>" rel="stylesheet" type="text/css" />
+    <link href="<?=url('template/dist/assets/css/style.bundle.css')?>" rel="stylesheet" type="text/css" />
     <!--end::Global Theme Styles-->
     <!--begin::Layout Themes(used by all pages)-->
     <!--end::Layout Themes-->
-    <link rel="shortcut icon" href="<?=base_url('template/dist/assets/media/logos/favicon.ico')?>" />
+    <link rel="shortcut icon" href="<?=url('template/dist/assets/media/logos/favicon.ico')?>" />
 </head>
 <!--end::Head-->
 <!--begin::Body-->
@@ -87,7 +87,7 @@ License: You must have a valid license purchased only from themeforest(the above
             <div class="d-flex flex-column-fluid flex-column justify-content-between py-9 px-7 py-lg-13 px-lg-35">
                 <!--begin::Logo-->
                 <a href="#" class="text-center pt-2">
-                    <img src="<?=base_url('template/dist/assets/media/logos/logo.png')?>" class="max-h-75px" alt="" />
+                    <img src="<?=url('template/dist/assets/media/logos/logo.png')?>" class="max-h-75px" alt="" />
                 </a>
                 <!--end::Logo-->
                 <!--begin::Aside body-->
@@ -95,7 +95,8 @@ License: You must have a valid license purchased only from themeforest(the above
                     <!--begin::Signin-->
                     <div class="login-form login-signin py-11">
                         <!--begin::Form-->
-                        <form class="form" novalidate="novalidate" id="kt_login_signin_form">
+                        <form class="form" action="/loginAction" method="POST" novalidate="novalidate" id="kt_login_signin_form">
+                            @csrf
                             <!--begin::Title-->
                             <div class="text-center pb-8">
                                 <h2 class="font-weight-bolder text-dark font-size-h2 font-size-h1-lg">Sign In</h2>
@@ -106,16 +107,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             <!--begin::Form group-->
                             <div class="form-group">
                                 <label class="font-size-h6 font-weight-bolder text-dark">Email</label>
-                                <?php
-                                $data = [
-                                    'name'      => 'email',
-                                    'id' => 'email',
-                                    'class' => 'form-control form-control-solid h-auto py-7 px-6 rounded-lg',
-                                    'autocomplete' => 'off',
-                                ];
-                                echo form_input($data);
-                                ?>
-<!--                                <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg" type="text" name="username" autocomplete="off" />-->
+                              <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg" type="text" name="email" id="email" autocomplete="off" />
                             </div>
                             <!--end::Form group-->
                             <!--begin::Form group-->
@@ -125,31 +117,12 @@ License: You must have a valid license purchased only from themeforest(the above
                                     <a href="javascript:;" class="text-primary font-size-h6 font-weight-bolder text-hover-primary pt-5" id="kt_login_forgot">Forgot Password ?</a>
                                 </div>
 <!--                                <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg" type="password" name="password" autocomplete="off" />-->
-                                <?php
-                                $data = [
-                                    'name'      => 'password',
-                                    'id'      => 'password',
-                                    'class' => 'form-control form-control-solid h-auto py-7 px-6 rounded-lg',
-                                    'autocomplete' => 'off',
-                                ];
-                                echo form_password($data);
-                                ?>
+                                <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg" type="password" name="password" id="password" autocomplete="off" />
                             </div>
                             <!--end::Form group-->
                             <!--begin::Action-->
                             <div class="text-center pt-2">
-                                <?php
-                                $data = [
-                                    'name'    => 'button',
-                                    'id'  => 'kt_login_signin_submit',
-                                    'value'   => 'true',
-                                    'type'    => 'submit',
-                                    'content' => 'Sign In',
-                                    'class' => 'btn btn-dark font-weight-bolder font-size-h6 px-8 py-4 my-3',
-                                ];
-                                echo form_button($data);
-                                ?>
-<!--                                <button id="kt_login_signin_submit" class="btn btn-dark font-weight-bolder font-size-h6 px-8 py-4 my-3">Sign In</button>-->
+                                <button id="kt_login_signin_submit" class="btn btn-dark font-weight-bolder font-size-h6 px-8 py-4 my-3">Sign In</button>
                             </div>
                             <!--end::Action-->
                         </form>
@@ -273,12 +246,11 @@ License: You must have a valid license purchased only from themeforest(the above
 <script>var KTAppSettings = { "breakpoints": { "sm": 576, "md": 768, "lg": 992, "xl": 1200, "xxl": 1200 }, "colors": { "theme": { "base": { "white": "#ffffff", "primary": "#1BC5BD", "secondary": "#E5EAEE", "success": "#1BC5BD", "info": "#6993FF", "warning": "#FFA800", "danger": "#F64E60", "light": "#F3F6F9", "dark": "#212121" }, "light": { "white": "#ffffff", "primary": "#1BC5BD", "secondary": "#ECF0F3", "success": "#C9F7F5", "info": "#E1E9FF", "warning": "#FFF4DE", "danger": "#FFE2E5", "light": "#F3F6F9", "dark": "#D6D6E0" }, "inverse": { "white": "#ffffff", "primary": "#ffffff", "secondary": "#212121", "success": "#ffffff", "info": "#ffffff", "warning": "#ffffff", "danger": "#ffffff", "light": "#464E5F", "dark": "#ffffff" } }, "gray": { "gray-100": "#F3F6F9", "gray-200": "#ECF0F3", "gray-300": "#E5EAEE", "gray-400": "#D6D6E0", "gray-500": "#B5B5C3", "gray-600": "#80808F", "gray-700": "#464E5F", "gray-800": "#1B283F", "gray-900": "#212121" } }, "font-family": "Poppins" };</script>
 <!--end::Global Config-->
 <!--begin::Global Theme Bundle(used by all pages)-->
-<script src="<?=base_url('template/dist/assets/plugins/global/plugins.bundle.js')?>"></script>
-<script src="<?=base_url('template/dist/assets/plugins/custom/prismjs/prismjs.bundle.js')?>"></script>
-<script src="<?=base_url('template/dist/assets/js/scripts.bundle.js')?>"></script>
+<script src="<?=url('template/dist/assets/plugins/global/plugins.bundle.js')?>"></script>
+<script src="<?=url('template/dist/assets/plugins/custom/prismjs/prismjs.bundle.js')?>"></script>
+<script src="<?=url('template/dist/assets/js/scripts.bundle.js')?>"></script>
 <!--end::Global Theme Bundle-->
 <!--begin::Page Scripts(used by this page)-->
-<script src="<?=base_url('template/dist/assets/js/pages/custom/login/login-general.js')?>"></script>
 <!--end::Page Scripts-->
 </body>
 <!--end::Body-->

@@ -1,12 +1,11 @@
 <div class="aside aside-left d-flex aside-fixed" id="kt_aside">
-<?php parse_str($_SERVER['QUERY_STRING'], $_GET);  ?>
     <!--begin::Primary-->
     <div class="aside-primary d-flex flex-column align-items-center flex-row-auto">
         <!--begin::Brand-->
         <div class="aside-brand d-flex flex-column align-items-center flex-column-auto py-5 py-lg-12">
             <!--begin::Logo-->
             <a href="/metronic/demo3/index.html">
-                <img alt="Logo" src="<?= base_url('template')?>/dist/assets/media/logos/logo-letter-2.png" class="max-h-30px">
+                <img alt="Logo" src="<?= url('template')?>/dist/assets/media/logos/logo-letter-2.png" class="max-h-30px">
             </a>
             <!--end::Logo-->
         </div>
@@ -19,7 +18,7 @@
                 <li class="nav-item mb-3" data-toggle="tooltip" data-placement="right" data-container="body" data-boundary="window" title="" data-original-title="Latest Projects">
                     <a href="#" class="nav-link btn btn-icon btn-clean btn-lg" data-toggle="tab" data-target="#kt_aside_tab_1" role="tab">
 										<span class="svg-icon svg-icon-xl">
-											<!--begin::Svg Icon | path"<?= base_url('template')?>/dist/assets/media/svg/icons/Layout/Layout-4-blocks.svg-->
+											<!--begin::Svg Icon | path"<?= url('template')?>/dist/assets/media/svg/icons/Layout/Layout-4-blocks.svg-->
 											<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 												<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 													<rect x="0" y="0" width="24" height="24"></rect>
@@ -33,10 +32,10 @@
                 </li>
                 <!--end::Item-->
                 <!--begin::Item-->
-                <li class="nav-item mb-3" data-toggle="tooltip" data-placement="right" data-container="body" data-boundary="window" title="" data-original-title="<?=lang('app.member')?>">
-                    <a href="<?=base_url('admin/members?role=user')?>" class="nav-link btn btn-icon btn-clean btn-lg <?php if (uri_string() == "admin/members" &&  $role &&($role ?? null) == "user") {echo "active";} ?>">
+                <li class="nav-item mb-3" data-toggle="tooltip" data-placement="right" data-container="body" data-boundary="window" title="" data-original-title="<?=__('app.member')?>">
+                    <a href="<?=url('admin/members?role=user')?>" class="nav-link btn btn-icon btn-clean btn-lg <?php if (Request::url() == "admin/members" &&  $role &&($role ?? null) == "user") {echo "active";} ?>">
 										<span class="svg-icon svg-icon-xl">
-											<!--begin::Svg Icon | path"<?= base_url('template')?>/dist/assets/media/svg/icons/Communication/Group.svg-->
+											<!--begin::Svg Icon | path"<?= url('template')?>/dist/assets/media/svg/icons/Communication/Group.svg-->
 											<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 												<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 													<polygon points="0 0 24 0 24 24 0 24"></polygon>
@@ -49,8 +48,8 @@
                     </a>
                 </li>
 
-				<li class="nav-item mb-3" data-toggle="tooltip" data-placement="right" data-container="body" data-boundary="window" title="" data-original-title="<?=lang('app.admin')?>">
-                    <a href="<?=base_url('admin/members?role=admin')?>" class="nav-link btn btn-icon btn-clean btn-lg <?php if (uri_string() == "admin/members" && ($role ?? null) == "admin") {echo "active";} ?>">
+				<li class="nav-item mb-3" data-toggle="tooltip" data-placement="right" data-container="body" data-boundary="window" title="" data-original-title="<?=__('app.admin')?>">
+                    <a href="<?=url('admin/members?role=admin')?>" class="nav-link btn btn-icon btn-clean btn-lg <?php if (Request::url() == "admin/members" && ($role ?? null) == "admin") {echo "active";} ?>">
 						<span class="svg-icon svg-icon-xl"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-02-01-052524/theme/html/demo3/dist/../src/media/svg/icons/Code/Spy.svg-->
 							<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 								<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -67,7 +66,7 @@
                 <li class="nav-item mb-3" data-toggle="tooltip" data-placement="right" data-container="body" data-boundary="window" title="" data-original-title="Latest Reports">
                     <a href="#" class="nav-link btn btn-icon btn-clean btn-lg" data-toggle="tab" data-target="#kt_aside_tab_3" role="tab">
 										<span class="svg-icon svg-icon-xl">
-											<!--begin::Svg Icon | path"<?= base_url('template')?>/dist/assets/media/svg/icons/Media/Equalizer.svg-->
+											<!--begin::Svg Icon | path"<?= url('template')?>/dist/assets/media/svg/icons/Media/Equalizer.svg-->
 											<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 												<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 													<rect x="0" y="0" width="24" height="24"></rect>
@@ -86,7 +85,7 @@
                 <li class="nav-item mb-3" data-toggle="tooltip" data-placement="right" data-container="body" data-boundary="window" title="" data-original-title="Project Management">
                     <a href="#" class="nav-link btn btn-icon btn-clean btn-lg" data-toggle="tab" data-target="#kt_aside_tab_4" role="tab">
 										<span class="svg-icon svg-icon-xl">
-											<!--begin::Svg Icon | path"<?= base_url('template')?>/dist/assets/media/svg/icons/General/Shield-check.svg-->
+											<!--begin::Svg Icon | path"<?= url('template')?>/dist/assets/media/svg/icons/General/Shield-check.svg-->
 											<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 												<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 													<rect x="0" y="0" width="24" height="24"></rect>
@@ -103,7 +102,7 @@
                 <li class="nav-item mb-3" data-toggle="tooltip" data-placement="right" data-container="body" data-boundary="window" title="" data-original-title="User Management">
                     <a href="#" class="nav-link btn btn-icon btn-clean btn-lg" data-toggle="tab" data-target="#kt_aside_tab_5" role="tab">
 										<span class="svg-icon svg-icon-xl">
-											<!--begin::Svg Icon | path"<?= base_url('template')?>/dist/assets/media/svg/icons/Home/Library.svg-->
+											<!--begin::Svg Icon | path"<?= url('template')?>/dist/assets/media/svg/icons/Home/Library.svg-->
 											<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 												<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 													<rect x="0" y="0" width="24" height="24"></rect>
@@ -120,7 +119,7 @@
                 <li class="nav-item mb-3" data-toggle="tooltip" data-placement="right" data-container="body" data-boundary="window" title="" data-original-title="Finance &amp; Accounting">
                     <a href="#" class="nav-link btn btn-icon btn-clean btn-lg" data-toggle="tab" data-target="#kt_aside_tab_6" role="tab">
 										<span class="svg-icon svg-icon-xl">
-											<!--begin::Svg Icon | path"<?= base_url('template')?>/dist/assets/media/svg/icons/Files/File-plus.svg-->
+											<!--begin::Svg Icon | path"<?= url('template')?>/dist/assets/media/svg/icons/Files/File-plus.svg-->
 											<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 												<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 													<polygon points="0 0 24 0 24 24 0 24"></polygon>
@@ -142,7 +141,7 @@
             <!--begin::Quick Actions-->
             <a href="#" class="btn btn-icon btn-clean btn-lg mb-1" id="kt_quick_actions_toggle" data-toggle="tooltip" data-placement="right" data-container="body" data-boundary="window" title="" data-original-title="Quick Actions">
 								<span class="svg-icon svg-icon-xl">
-									<!--begin::Svg Icon | path"<?= base_url('template')?>/dist/assets/media/svg/icons/Media/Equalizer.svg-->
+									<!--begin::Svg Icon | path"<?= url('template')?>/dist/assets/media/svg/icons/Media/Equalizer.svg-->
 									<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 										<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 											<rect x="0" y="0" width="24" height="24"></rect>
@@ -159,7 +158,7 @@
             <!--begin::Quick Panel-->
             <a href="#" class="btn btn-icon btn-clean btn-lg mb-1 position-relative" id="kt_quick_panel_toggle" data-toggle="tooltip" data-placement="right" data-container="body" data-boundary="window" title="" data-original-title="Quick Panel">
 								<span class="svg-icon svg-icon-xl">
-									<!--begin::Svg Icon | path"<?= base_url('template')?>/dist/assets/media/svg/icons/Layout/Layout-4-blocks.svg-->
+									<!--begin::Svg Icon | path"<?= url('template')?>/dist/assets/media/svg/icons/Layout/Layout-4-blocks.svg-->
 									<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 										<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 											<rect x="0" y="0" width="24" height="24"></rect>
@@ -176,7 +175,7 @@
             <a href="#" class="btn btn-icon btn-clean btn-lg w-40px h-40px" id="kt_quick_user_toggle" data-toggle="tooltip" data-placement="right" data-container="body" data-boundary="window" title="" data-original-title="User Profile">
 								<span class="symbol symbol-30 symbol-lg-40">
 									<span class="svg-icon svg-icon-xl">
-										<!--begin::Svg Icon | path"<?= base_url('template')?>/dist/assets/media/svg/icons/General/User.svg-->
+										<!--begin::Svg Icon | path"<?= url('template')?>/dist/assets/media/svg/icons/General/User.svg-->
 										<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 											<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 												<polygon points="0 0 24 0 24 24 0 24"></polygon>

@@ -1,5 +1,5 @@
 
-<?php echo view('templates/header')?>
+@include('templates/header')
 
 <body id="kt_body" class="subheader-enabled aside-enabled aside-fixed aside-secondary-disabled">
 <!-- Google Tag Manager (noscript) -->
@@ -12,7 +12,7 @@
 <div id="kt_header_mobile" class="header-mobile">
     <!--begin::Logo-->
     <a href="/metronic/demo3/index.html">
-        <img alt="Logo" src="<?= base_url('template')?>/dist/assets/media/logos/logo-letter-2.png" class="logo-default max-h-30px">
+        <img alt="Logo" src="<?= url('template')?>/dist/assets/media/logos/logo-letter-2.png" class="logo-default max-h-30px">
     </a>
     <!--end::Logo-->
     <!--begin::Toolbar-->
@@ -28,7 +28,7 @@
     <!--begin::Page-->
     <div class="d-flex flex-row flex-column-fluid page">
         <!--begin::Aside-->
-        <?php echo view('templates/aside.php')?>
+        @include('templates/aside')
         <!--end::Aside-->
         <!--begin::Wrapper-->
         <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
@@ -58,9 +58,9 @@
                         <!--begin::Toolbar-->
                         <div class="d-flex align-items-center flex-wrap">
                             <!--begin::Button-->
-                            <a href="<?=base_url('admin/newuser')?>" class="btn button-color btn-fixed-height font-weight-bold px-2 px-lg-5 mr-2">
+                            <a href="<?=url('admin/newuser')?>" class="btn button-color btn-fixed-height font-weight-bold px-2 px-lg-5 mr-2">
 										<span class="svg-icon svg-icon-lg">
-											<!--begin::Svg Icon | path"<?= base_url('template')?>/dist/assets/media/svg/icons/Communication/Add-user.svg-->
+											<!--begin::Svg Icon | path"<?= url('template')?>/dist/assets/media/svg/icons/Communication/Add-user.svg-->
 											<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 												<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 													<polygon points="0 0 24 0 24 24 0 24"></polygon>
@@ -74,14 +74,14 @@
                             </a>
                             <!--end::Button-->
                             <!--begin::Dropdown-->
-                            <a href="<?=base_url('logs/logout')?>" class="btn btn-primary btn-fixed-height font-weight-bold px-2 px-lg-5 mr-2" >
+                            <a href="<?=url('logs/logout')?>" class="btn btn-primary btn-fixed-height font-weight-bold px-2 px-lg-5 mr-2" >
                                 <span class="d-none d-md-inline">Logout</span>
                             </a>
                             <!--end::Dropdown-->
                             <!--begin::Button-->
                             <a href="#" class="btn btn-primary btn-icon font-weight-bold" data-toggle="modal" data-target="#kt_chat_modal">
 										<span class="svg-icon svg-icon-lg">
-											<!--begin::Svg Icon | path"<?= base_url('template')?>/dist/assets/media/svg/icons/Communication/Group-chat.svg-->
+											<!--begin::Svg Icon | path"<?= url('template')?>/dist/assets/media/svg/icons/Communication/Group-chat.svg-->
 											<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 												<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 													<rect x="0" y="0" width="24" height="24"></rect>
@@ -100,14 +100,8 @@
                 <!--begin::Entry-->
                 <div class="d-flex flex-column-fluid">
                     <!--begin::Container-->
-
                     <div class="container">
-                        <?php echo view('logs/edit.php',[
-                            'countries' => esc($countries),
-                            'province' => esc($province),
-                            'data' => $data,
-                        ])?>
-
+                        @include('logs/newProduct')
                     </div>
                     <!--end::Container-->
                 </div>
@@ -146,15 +140,15 @@
 
 <!--end::Quick Actions Panel-->
 <!-- begin::User Panel-->
-<?php echo view('templates/user_panel.php')?>
+@include('templates/user_panel')
 <!-- end::User Panel-->
 
 <!--begin::Quick Panel-->
-<?php echo view('templates/quick_panel.php')?>
+@include('templates/quick_panel')
 <!--end::Quick Panel-->
 <!--begin::Chat Panel-->
-<?php echo view('templates/chat_panel.php')?>
+@include('templates/chat_panel')
 
 <!--end::Chat Panel-->
 
-<?php echo view('templates/footer')?>
+@include('templates/footer')
