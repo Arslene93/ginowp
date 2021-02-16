@@ -14,6 +14,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+<<<<<<< HEAD
+    return view('login');
+});
+
+Route::post('/login', 'Auth\loginController@login')->name('login');
+Route::get('/dashboard', 'dashboardController@index')->name('dashboard');
+=======
     return view('admin/newProduct');
 });
 
@@ -22,3 +29,4 @@ Route::post('/loginAction', 'LoginController@login');
 Route::get('/login', function () {
     return view('logs/login');
 });
+>>>>>>> crud
