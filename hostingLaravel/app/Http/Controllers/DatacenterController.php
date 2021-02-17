@@ -13,7 +13,7 @@ class DatacenterController extends Controller
     {
         $data_center = Datacenter::get()->toArray();
 
-        return view('Datacenters.index');
+        return view('Datacenters.index', ['datacenters'=>$data_center]);
     }
 
 
@@ -28,8 +28,6 @@ class DatacenterController extends Controller
         $request->validate([
             'name' => 'required',
             'description' => 'required',
-            'status' => 'required',
-
         ]);
 
         $data_center = new DataCenter();
@@ -47,7 +45,7 @@ class DatacenterController extends Controller
     {
         $data_center = DataCenter::find($id);
 
-        return view('Datacenters.edit');
+        return view('Datacenters.edit', ['datacenter'=>$data_center]);
     }
 
 
@@ -56,14 +54,13 @@ class DatacenterController extends Controller
         $request->validate([
             'name' => 'required',
             'description' => 'required',
-            'status' => 'required',
 
         ]);
 
         $data_center = DataCenter::find($id);
-        $data_center->title = $request->title;
+        $data_center->name = $request->name;
         $data_center->description = $request->description;
-        $data_center->status = $request->status;
+        // $data_center->status = $request->status;
 
         $data_center->save();
 

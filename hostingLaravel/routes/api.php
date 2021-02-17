@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
 Route::post('user/create', 'UserController@store')->name('user.create');
 Route::post('user/edit', 'UserController@update')->name('user.edit');
 Route::delete('user/delete/{id}','UserController@destroy')->name('user.destroy');

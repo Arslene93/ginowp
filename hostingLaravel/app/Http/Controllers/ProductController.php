@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Models\Product;
+use App\Models\Pricing;
 use App\Models\Datacenter;
 use App\Models\Pricing;
 
@@ -15,6 +16,7 @@ class ProductController extends Controller
 
     public function index()
     {
+
         $product = Product::with("pricing","datacenters")->get()->toArray();
         // dd($product);
         // $data_center = Datacenter::select('name')
@@ -116,5 +118,11 @@ class ProductController extends Controller
         $product->delete();
 
         return back();
+    }
+
+    public function prices($id)
+    {
+        $prices = Pricing::where('id_prod', $id)->selectRaw('pricing.*, data_center.name')->leftJoin('data_center', 'data_center.id', 'pricing.id_data_center')->get();
+        return response()->json($prices);
     }
 }

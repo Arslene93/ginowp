@@ -9,6 +9,7 @@ class Pricing extends Model
 {
     use HasFactory;
     protected $table="pricing";
+
     protected $fillable = ['id'];
 
 
@@ -23,4 +24,3 @@ class Pricing extends Model
             return $this->HasOne(Product::class, 'id_prod');
         }    
     }
-
