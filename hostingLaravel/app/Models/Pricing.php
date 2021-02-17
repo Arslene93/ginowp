@@ -9,4 +9,18 @@ class Pricing extends Model
 {
     use HasFactory;
     protected $table="pricing";
-}
+
+    protected $fillable = ['id'];
+
+
+    public function datacenter()
+    {
+        return $this->HasOne(Datacenter::class,'id_data_center');
+    }
+
+    
+        public function product()
+        {
+            return $this->HasOne(Product::class, 'id_prod');
+        }    
+    }

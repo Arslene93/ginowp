@@ -15,7 +15,7 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/', function () {
-    return view('Products.create');
+    return view('logs.login');
 });
 
 Route::post('/login', 'Auth\loginController@login')->name('login');
@@ -39,3 +39,4 @@ Route::delete('/datacenter/delete/{id}','DatacenterController@destroy')->name('D
 // {
 //     dd($request->all());
 // });
+
