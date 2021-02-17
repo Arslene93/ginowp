@@ -15,17 +15,18 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/', function () {
-    return view('admin.newProduct');
+    return view('Products.create');
 });
 
 Route::post('/login', 'Auth\loginController@login')->name('login');
 Route::get('/dashboard', 'dashboardController@index')->name('dashboard');
 
+Route::get('/index', 'ProductController@index')->name('products.create');
 Route::post('/create', 'ProductController@store')->name('products.create');
 Route::post('/edit', 'ProductController@update')->name('products.edit');
 Route::delete('/delete/{id}','ProductController@destroy')->name('prroducts.destroy');
 
-
+Route::get('/prices/{id}', 'ProductController@prices');
 
 Route::get('/datacenter/new', 'DatacenterController@create')->name('Datacenters.new');
 Route::get('/datacenter', 'DatacenterController@index')->name('Datacenters.index');
@@ -34,7 +35,7 @@ Route::post('/datacenter/edit/{id}', 'DatacenterController@update')->name('Datac
 Route::get('/datacenter/update/{id}', 'DatacenterController@edit')->name('Datacenters.update');
 Route::delete('/datacenter/delete/{id}','DatacenterController@destroy')->name('Datacenters.destroy');
 
-Route::post('/addProduct', function (request $request)
-{
-    dd($request->all());
-});
+// Route::post('/addProduct', function (request $request)
+// {
+//     dd($request->all());
+// });

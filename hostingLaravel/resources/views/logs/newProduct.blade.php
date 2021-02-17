@@ -48,25 +48,25 @@
                                 <div data-repeater-item="" class="form-group row align-items-end">
                                     <div class="col-md-3">
                                         <label>{{__('Data Center')}}</label>
-                                        <input type="text" class="form-control" name="price[datacenter]" placeholder="{{__('Data Center')}}" />
+                                        <input type="text" class="form-control" required name="price[datacenter]" placeholder="{{__('Data Center')}}" />
                                         <div class="d-md-none mb-2"></div>
                                     </div>
                                     
                                     <div class="col-md-2">
                                     <label>{{__('price')}}</label>
-                                        <input  type="number" step="0.01" class="form-control" name="price[price]" placeholder="{{__('Price')}}" />
+                                        <input  type="number" step="0.01" class="form-control" required name="price[price]" placeholder="{{__('Price')}}" />
                                         <div class="d-md-none mb-2"></div>
                                     </div>
 
                                     <div class="col-md-2">
                                         <label>{{__('Price Real')}}:</label>
-                                        <input  type="number" step="0.01" class="form-control" name="price[price_real]" placeholder="{{__('Price Real')}}" />
+                                        <input  type="number" step="0.01" class="form-control" required name="price[price_real]" placeholder="{{__('Price Real')}}" />
                                         <div class="d-md-none mb-2"></div>
                                     </div>
 
                                     <div class="col-md-2">
                                         <label>{{__('Months')}}:</label>
-                                        <input type="number" class="form-control" name="price[billing]" placeholder="{{__('Months')}}" />
+                                        <input type="number" class="form-control" required name="price[billing]" placeholder="{{__('Months')}}" />
                                         <div class="d-md-none mb-2"></div>
                                     </div>
 
@@ -164,7 +164,8 @@
 
             hide: function (deleteElement) {
                 $(this).slideUp(deleteElement);
-            }
+            },
+            isFirstItemUndeletable: true
         });
     }
 

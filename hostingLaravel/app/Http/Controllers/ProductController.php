@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Models\Product;
+use App\Models\Pricing;
 use App\Models\Datacenter;
 
 
@@ -13,10 +14,10 @@ class ProductController extends Controller
 
     public function index()
     {
-        $product = Product::get()->toArray();
-        $data_center = Datacenter::select('id' , 'name')->get();
+        // $product = Product::get()->toArray();
+        // $data_center = Datacenter::select('id' , 'name')->get();
 
-        return view('products.index' , ['data_center'=> $data_center]);
+        return view('products.index');
     }
 
 
@@ -82,5 +83,11 @@ class ProductController extends Controller
         //$feature->features()->detach();
 
         return back();
+    }
+
+    public function prices($id)
+    {
+        $prices = Pricing::where('id_prod', $id)->selectRaw('pricing.*, data_center.name')->leftJoin('data_center', 'data_center.id', 'pricing.id_data_center')->get();
+        return response()->json($prices);
     }
 }
