@@ -95,7 +95,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     <!--begin::Signin-->
                     <div class="login-form login-signin py-11">
                         <!--begin::Form-->
-                        <form class="form" action="/loginAction" method="POST" novalidate="novalidate" id="kt_login_signin_form">
+                        <form class="form" action="/login" method="POST" novalidate="novalidate" id="kt_login_signin_form">
                             @csrf
                             <!--begin::Title-->
                             <div class="text-center pb-8">

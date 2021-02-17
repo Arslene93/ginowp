@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Product;
 use App\Models\Datacenter;
+use App\Models\Pricing;
+
 
 
 class ProductController extends Controller
@@ -13,10 +15,13 @@ class ProductController extends Controller
 
     public function index()
     {
-        $product = Product::get()->toArray();
-        $data_center = Datacenter::select('id' , 'name')->get();
-
-        return view('products.index' , ['data_center'=> $data_center]);
+        $product = Product::with("pricing","datacenters")->get()->toArray();
+        // dd($product);
+        // $data_center = Datacenter::select('name')
+        // $pricing = Pricing::select('price')
+        // ->get();
+    
+        return view('products.index', ['products'=>$product]);
     }
 
 
@@ -37,12 +42,25 @@ class ProductController extends Controller
 
         $product = new Product();
         $product->title = $request->title;
-        $product->TVA = $request->TVA;
         $product->description = $request->description;
+        $product->TVA = $request->TVA;
         $product->status = '1';
+        $product->save();
+        $prod = $product->id;
+              
+
+      
+            foreach ($request->price as $price){
+                $priceModel = new Pricing();
+                $priceModel->price = $request->price;
+                $priceModel->id_data_center = $request->$data_center;
+                $priceModel->price_real = $request->price_real;
+                $priceModel->billing = $request->billing;
+                $priceModel->id_prod = $prod;
+                $priceModel->save();
+            }
 
 
-         $prod = $product->save();
         return redirect()->route('products.index');
     }
 
@@ -67,9 +85,26 @@ class ProductController extends Controller
         $product = Product::find($id);
         $product->title = $request->title;
         $product->TVA = $request->TVA;
-        $product->status = $request->status;
+        $product->status = '1';
+     
 
         $product->save();
+
+
+
+         $price = Pricing::where("id_prod" , $id)->delete();
+
+
+        foreach ($request->price as $price){
+            $priceModel = new Pricing();
+            $priceModel->price = $request->price;
+            $priceModel->id_data_center = $request->$data_center;
+            $priceModel->price_real = $request->price_real;
+            $priceModel->billing = $request->billing;
+            $priceModel->id_prod = $id;
+            $priceModel->save();
+        }
+
 
         return redirect()->route('products.index');
     }
@@ -79,7 +114,6 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         $product->delete();
-        //$feature->features()->detach();
 
         return back();
     }
