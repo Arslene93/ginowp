@@ -29,12 +29,12 @@
 
                 <div class="row form-group">
                         <div class="col-8">
-                            <input type="text" class="form-control" name="dataname" id="dataname" placeholder="data center name">
+                            <input type="text" class="form-control" value="{{$datacenter['name']}}" name="dataname" id="dataname" placeholder="data center name">
                         </div>
                 </div>
                 <div class="row form-group">
                     <div class="col-4">
-                        <textarea name="description" id="description" class="form-control" placeholder="Description"></textarea>
+                        <textarea name="description" id="description" class="form-control" placeholder="Description">{{$datacenter['description']}}</textarea>
                     </div>
                 </div>
             </div>
@@ -79,7 +79,7 @@
                 //check Admin :
                     console.log('admin form');
                     $.ajax({
-                        url: window.location.origin + '/datacenter/create',
+                        url: window.location.origin + "/datacenter/edit/{{$datacenter['id']}}",
                         method: "POST",
                         
                         data: {

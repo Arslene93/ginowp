@@ -1,0 +1,9 @@
+diff a/hostingLaravel/config/database.php b/hostingLaravel/config/database.php	(rejected hunks)
+@@ -46,7 +46,6 @@
+         'mysql' => [
+             'driver' => 'mysql',
+             'url' => env('DATABASE_URL'),
+-            'host' => env('DB_HOST', '127.0.0.1'),
+             'host' => '167.233.7.195',
+             'port' => env('DB_PORT', '3306'),
+             'database' => env('DB_DATABASE', 'forge'),

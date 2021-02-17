@@ -22,19 +22,19 @@
 
 <!-- ========================================================================= block 2  -->
 
-            <form class="form needs-validation">
-                @csrf
+            <?= form_open('','class="form needs-validation"')?>
+
             <div id="block2">
                 <div class="separator separator-dashed my-8"></div>
 
                 <div class="row form-group">
                         <div class="col-8">
-                            <input type="text" class="form-control" name="dataname" id="dataname" placeholder="data center name">
+                            <?= form_input(['class'=>'form-control','name'=>'dataname','id'=>'dataname','placeholder'=>'data center name', 'required' => true])?>
                         </div>
                 </div>
                 <div class="row form-group">
                     <div class="col-4">
-                        <textarea name="description" id="description" class="form-control" placeholder="Description"></textarea>
+                        <?= form_textarea([ 'class'=>'form-control','name'=>'description','id'=>'description','placeholder'=>'Description'])?>
                     </div>
                 </div>
             </div>
@@ -45,10 +45,10 @@
             <!-- ========================================================================= -->
         </div>
     <div class="card-footer">
-        <button type="submit" class="btn btn-primary mr-2">{{__('app.btn_login')}}</button>
+        <button type="submit" class="btn btn-primary mr-2"><?= lang('app.btn_login', array(),'it')?></button>
         <button type="reset" class="btn btn-secondary">Cancel</button>
     </div>
-</form>
+    <?= form_close()?>
             <!--end::Form-->
 </div>
 
@@ -56,6 +56,7 @@
 
         description = document.querySelector('#description');
         name = document.querySelector('#dataname');
+
         function helperFunction(e){
             let tmp1 = document.querySelectorAll('#block4  input');
             let tmp2 = document.querySelectorAll('#block4');
@@ -71,7 +72,7 @@
         submitButton = document.querySelector('button[type="submit"]');
         submitButton.addEventListener('click', (e) => {
             e.preventDefault();
-            console.log(description.value.trim());
+            console.log(name);
             const form = document.querySelector('.needs-validation');
             form.classList.add('was-validated');
             if (form.checkValidity()) {
@@ -79,12 +80,11 @@
                 //check Admin :
                     console.log('admin form');
                     $.ajax({
-                        url: window.location.origin + '/datacenter/create',
+                        url: window.location.origin + '/admin/newDataCenter',
                         method: "POST",
                         
                         data: {
-                            _token: '{{ csrf_token() }}',
-                            name: document.querySelector('#dataname').value.trim(),
+                            name: name.trim(),
                             description: description.value.trim(),
                         },
                         dataType: "json",
