@@ -31,7 +31,20 @@ class UserController extends Controller
             'password'      => 'required',
             'enable'        => 'required',
             'activation'    => 'required',
-            'banned'        => 'required',
+            'type'        => 'required',
+            'name'        => 'required',
+            'family_name'        => 'required',
+            'company_name'        => 'required',
+            'piva'        => 'required',
+            'cf'        => 'required',
+            'country'        => 'required',
+            'state'        => 'required',
+            'region'        => 'required',
+            'street'        => 'required',
+            'postal'        => 'required',
+            'civico'        => 'required',
+
+
          ]);
 
         $user = new User();
@@ -41,6 +54,21 @@ class UserController extends Controller
         $user->enable = $request->enable;
         $user->activation = $request->activation;
         $user->banned = $request->banned;
+        $user->type = $request->type;
+        $user->name = $request->name;
+        $user->family_name = $request->family_name;
+        $user->company_name = $request->company_name;
+        $user->piva = $request->piva;
+        $user->cf = $request->cf;
+        $user->country = $request->country;
+        $user->state = $request->state;
+        $user->region = $request->region;
+        $user->street = $request->street;
+        $user->postal = $request->postal;
+        $user->civico = $request->civico;
+      
+
+
         $user->save();
         $user->password=$request->password;
 
@@ -49,16 +77,37 @@ class UserController extends Controller
         }
 
 
+        public function edit($id)
+        {
+            $user = User::find($id);
+    
+            return view('user.edit');
 
-        public function update(Request $request, $id)
+        }
+
+
+      public function update(Request $request, $id)
     {
-        $validation =  Validator::make($request->all(), [
+    
+        $request->validate([
+
             'role'          => "user",
             'email'         => 'required',
             'password'      => 'required',
             'enable'        => 'required',
             'activation'    => 'required',
-            'banned'        => 'required',
+            'type'          => 'required',
+            'name'          => 'required',
+            'family_name'   => 'required',
+            'company_name'  => 'required',
+            'piva'          => 'required',
+            'cf'            => 'required',
+            'country'       => 'required',
+            'state'         => 'required',
+            'region'        => 'required',
+            'street'        => 'required',
+            'postal'        => 'required',
+            'civico'        => 'required',
          ]);
         
     
@@ -71,6 +120,19 @@ class UserController extends Controller
         $user->activation = $request->activation;
         $user->enable = $request->enable;
         $user->banned = $request->banned;
+        $user->type = $request->type;
+        $user->name = $request->name;
+        $user->family_name = $request->family_name;
+        $user->company_name = $request->company_name;
+        $user->piva = $request->piva;
+        $user->cf = $request->cf;
+        $user->country = $request->country;
+        $user->state = $request->state;
+        $user->region = $request->region;
+        $user->street = $request->street;
+        $user->postal = $request->postal;
+        $user->civico = $request->civico;
+      
 
 
         $user->save();
