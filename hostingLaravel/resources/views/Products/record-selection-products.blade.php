@@ -94,7 +94,7 @@
                 </div>
                 <!--end::Dropdown-->
                 <!--begin::Button-->
-                <a href="#" class="btn btn-primary font-weight-bolder">
+                <a href="/new" class="btn btn-primary font-weight-bolder">
 											<span class="svg-icon svg-icon-md">
 												<!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->
 												<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -316,7 +316,7 @@
                                 </ul>\
                             </div>\
                         </div>\
-                        <a href="/datacenter/update/${row.id}" class="btn btn-sm btn-clean btn-icon mr-2" title="Edit details">\
+                        <a href="/edit/${row.id}" class="btn btn-sm btn-clean btn-icon mr-2" title="Edit details">\
                             <span class="svg-icon svg-icon-md">\
                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">\
                                     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">\
@@ -327,7 +327,7 @@
                                 </svg>\
                             </span>\
                         </a>\
-                        <a href="/datacenter/delete/${row.id}" class="btn btn-sm btn-clean btn-icon" title="Delete">\
+                        <a href="/delete/${row.id}" class="btn btn-sm btn-clean btn-icon" title="Delete">\
                             <span class="svg-icon svg-icon-md">\
                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">\
                                     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">\
@@ -422,7 +422,9 @@
                 // public functions
                 init: function(data) {
                     demo(data);
-                }
+                },
+
+                
             };
 
             
@@ -441,5 +443,8 @@
                             KTDatatablePriceJson.init(data);
                         });
             }
+            $('#Modal').on('hidden.bs.modal', function (e) {
+                $('#kt_datatablePrice').KTDatatable().destroy();
+            })
     //# sourceMappingURL=data-json.js.map
 </script>

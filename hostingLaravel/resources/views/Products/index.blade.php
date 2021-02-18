@@ -104,7 +104,8 @@
 
                     <!--begin::Container-->
                     <div class="container">
-                        @include('Products/record-selection-products', ["products"=>json_encode([['id'=>1, 'description'=>'jsi', 'TVA' => 20, 'title' => 'sdqoj', 'datacenters'=>['4','20']]])])
+                        {{-- ['id'=>1, 'description'=>'jsi', 'TVA' => 20, 'title' => 'sdqoj', 'datacenters'=>['4','20']] --}}
+                        @include('Products/record-selection-products', ["products"=>json_encode($products)])
                     </div>
                     <!--end::Container-->
                 </div>

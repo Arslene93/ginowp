@@ -22,22 +22,22 @@
 
         <!-- ========================================================================= block 2  -->
 
-        <form class="form needs-validation" method="POST" action="/create">
+    <form class="form needs-validation" method="POST" action="/update/{{$product['id']}}">
             @csrf
             <div id="block2">
                 <div class="separator separator-dashed my-8"></div>
 
                 <div class="row form-group">
                         <div class="col-4">
-                            <input type="text" class="form-control" name="title" id="title" placeholder="Product title" required>
+                            <input type="text" value="{{$product['title']}}" class="form-control" name="title" id="title" placeholder="Product title" required>
                         </div>
                         <div class="col-4">
-                            <input type="number" class="form-control" name="TVA" id="TVA" placeholder="TVA" required>
+                            <input type="number" value="{{$product['TVA']}}" class="form-control" name="TVA" id="TVA" placeholder="TVA" required>
                         </div>
                 </div>
                 <div class="row form-group">
                     <div class="col-8">
-                        <textarea name="description" id="description" class="form-control" placeholder="Description"></textarea>
+                        <textarea name="description" id="description" class="form-control" placeholder="Description">{{$product['description']}}</textarea>
                     </div>
                 </div>
                 <div class="row form-group">
@@ -45,13 +45,14 @@
                         <div class="form-group row">
                             <label class="col-lg-1 col-form-label text-right">{{__('prices')}}:</label>
                             <div data-repeater-list="price" class="col-lg-10">
+                                @foreach($prices as $price)
                                 <div data-repeater-item="" class="form-group row align-items-end">
                                     <div class="col-md-3">
                                         <label>{{__('Data Center')}}</label>
-                                        {{-- <input type="text" class="form-control" required name="price[datacenter]" placeholder="{{__('Data Center')}}" /> --}}
+                                        {{-- <input type="text" class="form-control" value="{{$price['id_data_center']}}" required name="price[datacenter]" placeholder="{{__('Data Center')}}" /> --}}
                                         <select class="form-control" name="price[datacenter]" id="datacenter">
                                             @foreach($datacenters as $item) :?>
-                                                <option value="{{$item['id']}}"> {{$item['name']}}</option>
+                                                <option value="{{$item['id']}}" @if($item['id'] == $price['id_data_center']) selected @endif> {{$item['name']}}</option>
                                             @endforeach
                                         </select>
                                         <div class="d-md-none mb-2"></div>
@@ -59,19 +60,19 @@
                                     
                                     <div class="col-md-2">
                                     <label>{{__('price')}}</label>
-                                        <input  type="number" step="0.01" class="form-control" required name="price[price]" placeholder="{{__('Price')}}" />
+                                        <input  type="number" step="0.01" value="{{$price['price']}}" class="form-control" required name="price[price]" placeholder="{{__('Price')}}" />
                                         <div class="d-md-none mb-2"></div>
                                     </div>
 
                                     <div class="col-md-2">
                                         <label>{{__('Price Real')}}:</label>
-                                        <input  type="number" step="0.01" class="form-control" required name="price[price_real]" placeholder="{{__('Price Real')}}" />
+                                        <input  type="number" step="0.01" value="{{$price['price_real']}}" class="form-control" required name="price[price_real]" placeholder="{{__('Price Real')}}" />
                                         <div class="d-md-none mb-2"></div>
                                     </div>
 
                                     <div class="col-md-2">
                                         <label>{{__('Months')}}:</label>
-                                        <input type="number" class="form-control" required name="price[billing]" placeholder="{{__('Months')}}" />
+                                        <input type="number" class="form-control" value="{{$price['billing']}}" required name="price[billing]" placeholder="{{__('Months')}}" />
                                         <div class="d-md-none mb-2"></div>
                                     </div>
 
@@ -80,6 +81,7 @@
                                         <i class="la la-trash-o"></i>Delete</a>
                                     </div>
                                 </div>
+                                @endforeach
                             </div>
                         </div>
                         <div class="form-group row">

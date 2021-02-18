@@ -22,14 +22,14 @@
 
 <!-- ========================================================================= block 2  -->
 
-            <form class="form needs-validation">
+        <form class="form needs-validation" method="POST" action="/datacenter/edit/{{$datacenter['id']}}">
                 @csrf
             <div id="block2">
                 <div class="separator separator-dashed my-8"></div>
 
                 <div class="row form-group">
                         <div class="col-8">
-                            <input type="text" class="form-control" value="{{$datacenter['name']}}" name="dataname" id="dataname" placeholder="data center name">
+                            <input type="text" class="form-control" value="{{$datacenter['name']}}" name="name" id="dataname" placeholder="data center name">
                         </div>
                 </div>
                 <div class="row form-group">
@@ -69,35 +69,36 @@
 
         //    validation
         submitButton = document.querySelector('button[type="submit"]');
-        submitButton.addEventListener('click', (e) => {
-            e.preventDefault();
-            console.log(description.value.trim());
-            const form = document.querySelector('.needs-validation');
-            form.classList.add('was-validated');
-            if (form.checkValidity()) {
-                console.log('Form valid');
-                //check Admin :
-                    console.log('admin form');
-                    $.ajax({
-                        url: window.location.origin + "/datacenter/edit/{{$datacenter['id']}}",
-                        method: "POST",
+        // submitButton.addEventListener('click', (e) => {
+        //     e.preventDefault();
+        //     console.log(description.value.trim());
+        //     const form = document.querySelector('.needs-validation');
+        //     form.classList.add('was-validated');
+        //     if (form.checkValidity()) {
+        //         console.log('Form valid');
+        //         //check Admin :
+        //             console.log('admin form');
+        //             $.ajax({
+        //                 url: window.location.origin + "/datacenter/edit/{{$datacenter['id']}}",
+        //                 method: "POST",
                         
-                        data: {
-                            _token: '{{ csrf_token() }}',
-                            name: document.querySelector('#dataname').value.trim(),
-                            description: description.value.trim(),
-                        },
-                        dataType: "json",
-                    })
-                        .done(function (data) {
-                            document.getElementById('error-container').innerText = data.email ?? data;
-                        });
-            } else {
-                console.log('form Invalid');
-            }
+        //                 data: {
+        //                     _token: '{{ csrf_token() }}',
+        //                     name: document.querySelector('#dataname').value.trim(),
+        //                     description: description.value.trim(),
+        //                 },
+        //                 dataType: "json",
+        //             })
+        //                 .done(function (data) {
+        //                     window.location.replace(window.location.origin + "/datacenter") 
+        //                     document.getElementById('error-container').innerText = data.email ?? data;
+        //                 });
+        //     } else {
+        //         console.log('form Invalid');
+        //     }
 
 
-        });
+        // });
 
 
     </script>

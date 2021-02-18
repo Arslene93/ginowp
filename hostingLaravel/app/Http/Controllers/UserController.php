@@ -4,8 +4,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-
-
+use Illuminate\Support\Facades\DB;
 
 use App\Models\User;
 
@@ -14,13 +13,15 @@ class UserController extends Controller
     public function index()
     {
         $user = User::where('role', "user")->get();
-        return view('user.index');
+        return view('admin.index');
 
     }
 
     public function create()
     {
-        return view('user.create');
+        $countries = DB::table('nazioni')->get()->toArray();
+        $province = DB::table('province')->get()->toArray();
+        return view('admin.newUser', ['countries' => $countries, 'province' => $province]);
     }
 
     public function store(Request $request)
