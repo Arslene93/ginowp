@@ -11,11 +11,11 @@ class Pricing extends Model
     protected $table="pricing";
 
     protected $fillable = ['id'];
-
+    public $timestamps = false;
 
     public function datacenter()
     {
-        return $this->HasOne(Datacenter::class,'id_data_center');
+        return $this->HasOne(Datacenter::class,'id','id_data_center');
     }
 
     

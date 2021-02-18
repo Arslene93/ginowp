@@ -88,6 +88,9 @@
                             description: description.value.trim(),
                         },
                         dataType: "json",
+                        success:
+                            window.location.href = window.location.origin + '/datacenter',
+                        
                     })
                         .done(function (data) {
                             document.getElementById('error-container').innerText = data.email ?? data;

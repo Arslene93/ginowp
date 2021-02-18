@@ -118,7 +118,7 @@
                         <label> Country : </label>
                         <select class="form-control" name="country" id="country">
                             @foreach($countries as $item) :?>
-                                <option value="{{$item}}"> {{$item}}</option>
+                                <option value="{{$item->id}}"> {{$item->nazione}}</option>
                             @endforeach
                         </select>
 
@@ -220,7 +220,7 @@
             $.ajax({
                 method: "POST",
                 url: "{{url('logs/ajaxProvince')}}",
-                data: { country: country.value },
+                data: { country: country.value, _token:'{{ csrf_token() }}' },
                 dataType: "html",
             })
                 .done(function( data ) {
@@ -230,18 +230,18 @@
                             $.ajax({
                                 method: "POST",
                                 url: "{{url('logs/ajaxCommuni')}}",
-                                data: { province: province.value },
+                                data: { province: province.value, _token:'{{ csrf_token() }}' },
                                 dataType: "html",
                             })
                                 .done(function( data ) {
-                                    if (country.value === 'Italy'){
+                                    // if (country.value === '106'){
                                         document.getElementById("communi-container").innerHTML = data;
                                         region = document.querySelector("#region");
-                                    }
+                                    // }
                                 });
                         })
                 });
-            if (country.value !== 'Italy') {
+            if (country.value !== '106') {
                 document.getElementById("communi-container").innerHTML = '<input type="text" class="form-control" name="region" id="region" placeholder="Communi" required/>';
             }
         })

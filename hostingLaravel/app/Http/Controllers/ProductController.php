@@ -16,7 +16,7 @@ class ProductController extends Controller
     public function index()
     {
 
-        $product = Product::with("pricing","datacenters")->get()->toArray();
+        $product = Product::get()->toArray();
         // dd($product);
         // $data_center = Datacenter::select('name')
         // $pricing = Pricing::select('price')
@@ -28,14 +28,15 @@ class ProductController extends Controller
 
     public function create()
     {
-        return view('product.create');
+        $datacenters = Datacenter::selectRaw('name, max(id) as id')->groupBy('name')->get();
+        return view('Products.create', ['datacenters'=>$datacenters]);
     }
 
 
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required|unique:product|max:255',
+            'title' => 'required|max:255',
             'TVA' => 'required',
             'description' => 'required',
 
@@ -53,34 +54,35 @@ class ProductController extends Controller
       
             foreach ($request->price as $price){
                 $priceModel = new Pricing();
-                $priceModel->price = $request->price;
-                $priceModel->id_data_center = $request->$data_center;
-                $priceModel->price_real = $request->price_real;
-                $priceModel->billing = $request->billing;
+                $priceModel->price = $price['price'];
+                $priceModel->id_data_center = $price['datacenter'];
+                $priceModel->price_real = $price['price_real'];
+                $priceModel->billing = $price['billing'];
                 $priceModel->id_prod = $prod;
                 $priceModel->save();
             }
 
 
-        return redirect()->route('products.index');
+        return redirect()->route('Products.index');
     }
 
 
     public function edit($id)
     {
         $product = Product::find($id);
+        $prices = Pricing::where('id_prod', $id)->with("datacenter")->get();
+        $datacenters = Datacenter::selectRaw('name, max(id) as id')->groupBy('name')->get();
 
-        return view('products.edit');
+        return view('products.edit', ['product'=>$product, 'prices'=>$prices, 'datacenters'=>$datacenters]);
     }
 
 
     public function update(Request $request, $id)
     {
         $request->validate([
-            'title' => 'required|unique:product|max:255',
+            'title' => 'required|max:255',
             'TVA' => 'required',
             'description' => 'required',
-            'status' => 'required'
         ]);
 
         $product = Product::find($id);
@@ -98,16 +100,16 @@ class ProductController extends Controller
 
         foreach ($request->price as $price){
             $priceModel = new Pricing();
-            $priceModel->price = $request->price;
-            $priceModel->id_data_center = $request->$data_center;
-            $priceModel->price_real = $request->price_real;
-            $priceModel->billing = $request->billing;
-            $priceModel->id_prod = $id;
+                $priceModel->price = $price['price'];
+                $priceModel->id_data_center = $price['datacenter'];
+                $priceModel->price_real = $price['price_real'];
+                $priceModel->billing = $price['billing'];
+                $priceModel->id_prod = $id;
             $priceModel->save();
         }
 
 
-        return redirect()->route('products.index');
+        return redirect()->route('Products.index');
     }
 
 

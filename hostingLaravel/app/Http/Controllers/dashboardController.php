@@ -8,6 +8,6 @@ class dashboardController extends Controller
 {
     public function index()
     {
-        return view('admin.newProduct', ['role'=>'admin']);
+        return view('Products.create');
     }
 }

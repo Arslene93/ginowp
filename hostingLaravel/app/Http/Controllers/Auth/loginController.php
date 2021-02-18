@@ -12,8 +12,10 @@ class loginController extends Controller
     {
         if(!Auth::attempt(['email' => $request['email'], 'password' => $request['password']]))
         {
+
+            // dd("here");
 			return redirect()->back()->withErrors(['Email ou mot de passe incorrecte']);
         }
-        	return redirect('/dashboard');
+        	return redirect('/index');
     }
 }
