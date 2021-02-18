@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Pricing;
 use App\Models\Datacenter;
-use App\Models\Pricing;
 
 
 
